@@ -1258,8 +1258,6 @@
 				B43BA3841E8A2F0000565DB3 /* Sources */,
 				B43BA3851E8A2F0000565DB3 /* Frameworks */,
 				B43BA3861E8A2F0000565DB3 /* Resources */,
-				00715A2C3CFA228CADC0057E /* [CP] Embed Pods Frameworks */,
-				1FAE9549CCFF93C6E1F21EA8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1279,8 +1277,6 @@
 				B43BA38F1E8A2F0000565DB3 /* Sources */,
 				B43BA3901E8A2F0000565DB3 /* Frameworks */,
 				B43BA3911E8A2F0000565DB3 /* Resources */,
-				88D8EA0CC18AE2D353694519 /* [CP] Embed Pods Frameworks */,
-				7D08DA5D74645CE234427439 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1387,21 +1383,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		00715A2C3CFA228CADC0057E /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JChatTests/Pods-JChatTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		0B5A806B71DCC9E2A0842D61 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1413,26 +1394,11 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/mapapi.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JChat/Pods-JChat-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		1FAE9549CCFF93C6E1F21EA8 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JChatTests/Pods-JChatTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		70DD9288AA08E1D9BCFEDE17 /* [CP] Embed Pods Frameworks */ = {
@@ -1463,36 +1429,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JChat/Pods-JChat-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7D08DA5D74645CE234427439 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JChatUITests/Pods-JChatUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		88D8EA0CC18AE2D353694519 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JChatUITests/Pods-JChatUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A0A5931D9F1014922BC7FEF8 /* [CP] Check Pods Manifest.lock */ = {
