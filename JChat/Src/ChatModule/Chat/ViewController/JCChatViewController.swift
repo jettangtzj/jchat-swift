@@ -1098,9 +1098,11 @@ extension JCChatViewController: SAIInputBarDelegate, SAIInputBarDisplayable {
             inputBar.text = text + displayName + " "
         } else {
             let index1 = text.index(text.endIndex, offsetBy: currentIndex - text.length + 1)
-            let prefix = text.substring(with: Range<String.Index>(text.startIndex..<index1))
+            let range1 = text.startIndex..<index1
+            let prefix = text.substring(with: range1)
             let index2 = text.index(text.startIndex, offsetBy: currentIndex + 1)
-            let suffix = text.substring(with: Range<String.Index>(index2..<text.endIndex))
+            let range2 = index2..<text.endIndex
+            let suffix = text.substring(with: range2)
             inputBar.text = prefix + displayName + " " + suffix
             let _ = self.updateRemids(inputBar, "@" + displayName + " ", range, currentIndex)
         }

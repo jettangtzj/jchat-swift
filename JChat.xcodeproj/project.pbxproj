@@ -131,7 +131,6 @@
 		B43F70311EA87F7C0076D5AF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B43F70301EA87F7C0076D5AF /* CoreLocation.framework */; };
 		B43F70331EA87F910076D5AF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B43F70321EA87F910076D5AF /* QuartzCore.framework */; };
 		B43F70351EA87FA10076D5AF /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B43F70341EA87FA10076D5AF /* OpenGLES.framework */; };
-		B43F70371EA880280076D5AF /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B43F70361EA880280076D5AF /* libstdc++.6.0.9.tbd */; };
 		B43F70481EA883DA0076D5AF /* JCAddMapViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = B43F703A1EA883DA0076D5AF /* JCAddMapViewController.mm */; };
 		B43F704A1EA883DA0076D5AF /* icon_baidu_marker.png in Resources */ = {isa = PBXBuildFile; fileRef = B43F703D1EA883DA0076D5AF /* icon_baidu_marker.png */; };
 		B43F704B1EA883DA0076D5AF /* jiantou2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B43F703E1EA883DA0076D5AF /* jiantou2@2x.png */; };
@@ -227,7 +226,8 @@
 		B4FD347E1F4293EB00F96FCE /* MorePopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FD347D1F4293EB00F96FCE /* MorePopupView.swift */; };
 		B4FD34801F42B9A100F96FCE /* MyQRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FD347F1F42B9A100F96FCE /* MyQRCodeViewController.swift */; };
 		B4FFA4171F1764C300585B35 /* KILabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FFA4161F1764C200585B35 /* KILabel.m */; };
-		C91EFB2EF11AF29233E41A9E /* Pods_JChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4F564DA941DA039BE9AB21C /* Pods_JChat.framework */; };
+		C91EFB2EF11AF29233E41A9E /* Pods_JChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4F564DA941DA039BE9AB21C /* Pods_JChat.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		D7AAC4D421E4827E0016BABC /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D7AAC4D321E4827E0016BABC /* libstdc++.6.0.9.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -393,7 +393,6 @@
 		B43F70301EA87F7C0076D5AF /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B43F70321EA87F910076D5AF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		B43F70341EA87FA10076D5AF /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
-		B43F70361EA880280076D5AF /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
 		B43F70391EA883DA0076D5AF /* JCAddMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCAddMapViewController.h; sourceTree = "<group>"; };
 		B43F703A1EA883DA0076D5AF /* JCAddMapViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JCAddMapViewController.mm; sourceTree = "<group>"; };
 		B43F703D1EA883DA0076D5AF /* icon_baidu_marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_baidu_marker.png; sourceTree = "<group>"; };
@@ -495,6 +494,7 @@
 		B4FFA4161F1764C200585B35 /* KILabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KILabel.m; sourceTree = "<group>"; };
 		C4F564DA941DA039BE9AB21C /* Pods_JChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBCCA1A62435BE8F41C4D275 /* Pods_JChatTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JChatTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D7AAC4D321E4827E0016BABC /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "Pods/JMessage/libstdc++.6.0.9.tbd"; sourceTree = "<group>"; };
 		ED2FC29D8702D883AAF3E23C /* Pods-JChatUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JChatUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-JChatUITests/Pods-JChatUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -503,7 +503,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B43F70371EA880280076D5AF /* libstdc++.6.0.9.tbd in Frameworks */,
 				B43BA43F1E8A30C400565DB3 /* CoreTelephony.framework in Frameworks */,
 				B43BA4391E8A30A900565DB3 /* SystemConfiguration.framework in Frameworks */,
 				B43BA4351E8A309300565DB3 /* Security.framework in Frameworks */,
@@ -519,6 +518,7 @@
 				B43BA42D1E8A306700565DB3 /* libresolv.tbd in Frameworks */,
 				B43BA42B1E8A305500565DB3 /* libsqlite3.tbd in Frameworks */,
 				C91EFB2EF11AF29233E41A9E /* Pods_JChat.framework in Frameworks */,
+				D7AAC4D421E4827E0016BABC /* libstdc++.6.0.9.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1205,7 +1205,7 @@
 		DDA5C80485C5FFA2C3776F21 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B43F70361EA880280076D5AF /* libstdc++.6.0.9.tbd */,
+				D7AAC4D321E4827E0016BABC /* libstdc++.6.0.9.tbd */,
 				B43F70341EA87FA10076D5AF /* OpenGLES.framework */,
 				B43F70321EA87F910076D5AF /* QuartzCore.framework */,
 				B43F70301EA87F7C0076D5AF /* CoreLocation.framework */,
@@ -1828,13 +1828,15 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(SRCROOT)/**",
 				);
 				INFOPLIST_FILE = JChat/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/JMessage.framework",
+					"$(PROJECT_DIR)/Pods/JMessage",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1845,6 +1847,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/JChat/JChat-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
+				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/** $(PODS_ROOT)/**";
 			};
 			name = Debug;
 		};
@@ -1862,12 +1865,14 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = JChat/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/JMessage.framework",
+					"$(PROJECT_DIR)/Pods/JMessage",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1877,6 +1882,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/JChat/JChat-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
+				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/** $(PODS_ROOT)/**";
 			};
 			name = Release;
 		};
