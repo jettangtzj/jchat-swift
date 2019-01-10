@@ -108,7 +108,7 @@ class JCRegisterInfoViewController: UIViewController {
     func textFieldDidChanged(_ textField: UITextField) {
         if textField.markedTextRange == nil {
             let text = textField.text!
-            if text.characters.count > 30 {
+            if text.length > 30 {
                 let range = text.startIndex ..< text.index(text.startIndex, offsetBy:30)
                 let subText = text.substring(with: range)
                 textField.text = subText

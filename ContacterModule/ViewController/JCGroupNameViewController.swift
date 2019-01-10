@@ -18,7 +18,7 @@ class JCGroupNameViewController: UIViewController {
         _init()
         groupName = group.displayName()
         groupNameTextField.text = groupName
-        var count = 20 - groupName.characters.count
+        var count = 20 - groupName.length
         count = count < 0 ? 0 : count
         tipLabel.text = "\(count)"
         groupNameTextField.becomeFirstResponder()
@@ -64,12 +64,12 @@ class JCGroupNameViewController: UIViewController {
     func textFieldDidChanged(_ textField: UITextField) {
         if textField.markedTextRange == nil {
             let text = textField.text!
-            if text.characters.count > 20 {
+            if text.length > 20 {
                 let range = text.startIndex ..< text.index(text.startIndex, offsetBy:20)
                 let subText = text.substring(with: range)
                 textField.text = subText
             }
-            let count = 20 - (textField.text?.characters.count)!
+            let count = 20 - (textField.text?.length)!
             tipLabel.text = "\(count)"
         }
     }

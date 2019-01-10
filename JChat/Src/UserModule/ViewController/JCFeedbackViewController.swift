@@ -166,7 +166,7 @@ extension JCFeedbackViewController: UITextViewDelegate {
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text.characters.count <= 0 {
+        if textView.text.length <= 0 {
             textView.text = placeholder
             textView.textColor = placeholderColor
             tipLabel.text = "300"
@@ -183,12 +183,12 @@ extension JCFeedbackViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         if textView.markedTextRange == nil {
             let text = textView.text!
-            if text.characters.count > 300 {
+            if text.length > 300 {
                 let range = text.startIndex ..< text.index(text.startIndex, offsetBy:300)
                 let subText = text.substring(with: range)
                 textView.text = subText
             }
-            let count = 300 - (textView.text?.characters.count)!
+            let count = 300 - (textView.text?.length)!
             tipLabel.text = "\(count)"
         }
     }

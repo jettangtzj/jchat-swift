@@ -26,7 +26,7 @@ class MBProgressHUD_JChat: MBProgressHUD {
         }
     }
     
-    open static func show(text: String, view: UIView?, _ time: TimeInterval = 1.5) {
+    public static func show(text: String, view: UIView?, _ time: TimeInterval = 1.5) {
         DispatchQueue.main.async {
             var currentView = view
             if view == nil {
@@ -42,7 +42,7 @@ class MBProgressHUD_JChat: MBProgressHUD {
         }
     }
     
-    open static func hide(forView: UIView?, animated: Bool) {
+    public static func hide(forView: UIView?, animated: Bool) {
         DispatchQueue.main.async {
             var currentView = forView
             if currentView == nil {

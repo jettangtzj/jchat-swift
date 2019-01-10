@@ -17,7 +17,7 @@ class JCSignatureViewController: UIViewController {
         super.viewDidLoad()
         _init()
         signatureTextView.text = signature
-        var count = 30 - signature.characters.count
+        var count = 30 - signature.length
         count = count < 0 ? 0 : count
         tipLabel.text = "\(count)"
     }
@@ -100,12 +100,12 @@ extension JCSignatureViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         if textView.markedTextRange == nil {
             let text = textView.text!
-            if text.characters.count > 30 {
+            if text.length > 30 {
                 let range = text.startIndex ..< text.index(text.startIndex, offsetBy:30)
                 let subText = text.substring(with: range)
                 textView.text = subText
             }
-            let count = 30 - (textView.text?.characters.count)!
+            let count = 30 - (textView.text?.length)!
             tipLabel.text = "\(count)"
         }
     }
