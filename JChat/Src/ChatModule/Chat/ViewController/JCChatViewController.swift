@@ -19,7 +19,7 @@ class JCChatViewController: UIViewController {
     public required init(conversation: JMSGConversation) {
         self.conversation = conversation
         super.init(nibName: nil, bundle: nil)
-        automaticallyAdjustsScrollViewInsets = false;
+        automaticallyAdjustsScrollViewInsets = false
         if let draft = JCDraft.getDraft(conversation) {
             self.draft = draft
         }
@@ -676,7 +676,7 @@ extension JCChatViewController: SAIToolboxInputViewDataSource, SAIToolboxInputVi
                 PHPhotoLibrary.requestAuthorization({ (status) in
                     DispatchQueue.main.sync {
                         if status != .authorized {
-                            JCAlertView.bulid().setTitle("无权限访问照片").setMessage("请在设备的设置-极光 IM中允许访问照片。").setDelegate(self).addCancelButton("好的").addButton("去设置").setTag(10001).show()
+                            JCAlertView.bulid().setTitle("无权限访问照片").setMessage("请在设备的设置-IM中允许访问照片。").setDelegate(self).addCancelButton("好的").addButton("去设置").setTag(10001).show()
                         } else {
                             self._pushToSelectPhotos()
                         }
@@ -1075,7 +1075,7 @@ extension JCChatViewController: SAIInputBarDelegate, SAIInputBarDisplayable {
                 vc.finish = { (user, isAtAll, length) in
                     self.handleAt(inputBar, range, user, isAtAll, length)
                 }
-                vc.group = self.conversation.target as! JMSGGroup
+                vc.group = self.conversation.target as? JMSGGroup
                 let nav = JCNavigationController(rootViewController: vc)
                 self.present(nav, animated: true, completion: {})
             }
