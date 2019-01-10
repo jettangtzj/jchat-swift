@@ -18,7 +18,7 @@ class JCNoteNameViewController: UIViewController {
         _init()
         noteName = user.noteName ?? ""
         noteNameTextField.text = noteName
-        let count = 20 - noteName.characters.count
+        let count = 20 - noteName.length
         tipLabel.text = "\(count)"
         noteNameTextField.becomeFirstResponder()
     }
@@ -75,13 +75,13 @@ class JCNoteNameViewController: UIViewController {
         // markedTextRange指的是当前高亮选中的，除了长按选中，用户中文输入拼音过程往往也是高亮选中状态
         if textField.markedTextRange == nil {
             let text = textField.text!
-            if text.characters.count > 20 {
+            if text.length > 20 {
                 //let range = Range<String.Index>(text.startIndex ..< text.index(text.startIndex, offsetBy: 20))
                 let range = text.startIndex ..< text.index(text.startIndex, offsetBy:20)
                 let subText = text.substring(with: range)
                 textField.text = subText
             }
-            let count = 20 - (textField.text?.characters.count)!
+            let count = 20 - (textField.text?.length)!
             tipLabel.text = "\(count)"
         }
     }

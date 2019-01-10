@@ -11,7 +11,7 @@ import MBProgressHUD
 
 class MBProgressHUD_JChat: MBProgressHUD {
 
-    open static func showMessage(message: String, toView: UIView?) {
+    public static func showMessage(message: String, toView: UIView?) {
         DispatchQueue.main.async {
             var currentView = toView
             if toView == nil {
