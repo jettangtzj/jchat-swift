@@ -17,13 +17,13 @@ class JCJChatInfoViewController: UIViewController {
     }
 
     fileprivate lazy var tableview: UITableView = UITableView(frame: .zero, style: .grouped)
-    fileprivate lazy var tagArray = ["JChat 版本", "SDK 版本", "官方网站"]
+    fileprivate lazy var tagArray = ["当前版本", "SDK 版本", "官方网站"]
     fileprivate lazy var version: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
     fileprivate lazy var bundleVersion: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
 
     //MARK: - private func
     private func _init() {
-        self.title = "关于JChat"
+        self.title = "关于我们"
         view.backgroundColor = .white
         
         tableview.delegate = self
@@ -87,7 +87,7 @@ extension JCJChatInfoViewController: UITableViewDelegate, UITableViewDataSource 
             cell.textLabel?.layer.masksToBounds = true
             switch indexPath.row {
             case 0:
-                cell.detailTextLabel?.text = "v\(version).\(bundleVersion)"
+                cell.detailTextLabel?.text = "v\(version)"
             case 1:
                 cell.detailTextLabel?.text = "v\(JMESSAGE_VERSION)"
             case 2:
@@ -103,7 +103,7 @@ extension JCJChatInfoViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.row == 2 {
-            UIApplication.shared.openURL(URL(string: "https://www.jiguang.cn/")!)
+            UIApplication.shared.openURL(URL(string: "http://www.baidu.com/")!)
         }
     }
 }

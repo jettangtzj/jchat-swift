@@ -1311,13 +1311,13 @@
 					};
 					B43BA3871E8A2F0000565DB3 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 9PF5ASX4BR;
+						DevelopmentTeam = 5HXJWDD9P4;
 						ProvisioningStyle = Automatic;
 						TestTargetID = B43BA3731E8A2F0000565DB3;
 					};
 					B43BA3921E8A2F0000565DB3 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 9PF5ASX4BR;
+						DevelopmentTeam = 5HXJWDD9P4;
 						ProvisioningStyle = Automatic;
 						TestTargetID = B43BA3731E8A2F0000565DB3;
 					};
@@ -1892,7 +1892,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = 9PF5ASX4BR;
+				DEVELOPMENT_TEAM = 5HXJWDD9P4;
 				INFOPLIST_FILE = JChatTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dengyonghao.JChatTests;
@@ -1908,7 +1908,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = 9PF5ASX4BR;
+				DEVELOPMENT_TEAM = 5HXJWDD9P4;
 				INFOPLIST_FILE = JChatTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dengyonghao.JChatTests;
@@ -1923,7 +1923,7 @@
 			baseConfigurationReference = 25107AB0699A2A0F65F5F140 /* Pods-JChatUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = 9PF5ASX4BR;
+				DEVELOPMENT_TEAM = 5HXJWDD9P4;
 				INFOPLIST_FILE = JChatUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dengyonghao.JChatUITests;
@@ -1938,7 +1938,7 @@
 			baseConfigurationReference = ED2FC29D8702D883AAF3E23C /* Pods-JChatUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = 9PF5ASX4BR;
+				DEVELOPMENT_TEAM = 5HXJWDD9P4;
 				INFOPLIST_FILE = JChatUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dengyonghao.JChatUITests;

@@ -30,7 +30,7 @@ class JCJChatInfoCell: UITableViewCell {
         let nameLabel = UILabel()
         let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString")
         nameLabel.textAlignment = .center
-        nameLabel.text = "JChat v\(String(describing: version!))"
+        nameLabel.text = "抖M v\(String(describing: version!))"
         nameLabel.font = UIFont.systemFont(ofSize: 15)
         nameLabel.textColor = UIColor(netHex: 0x999999)
         nameLabel.backgroundColor = .white

@@ -117,7 +117,7 @@ extension JCFeedbackViewController: JCPhotoBarDelegate {
             PHPhotoLibrary.requestAuthorization({ (status) in
                 DispatchQueue.main.sync {
                     if status != .authorized {
-                        let alertView = UIAlertView(title: "无权限访问照片", message: "请在设备的设置-极光 IM中允许访问照片。", delegate: self, cancelButtonTitle: "好的", otherButtonTitles: "去设置")
+                        let alertView = UIAlertView(title: "无权限访问照片", message: "请在设备的设置中允许访问照片。", delegate: self, cancelButtonTitle: "好的", otherButtonTitles: "去设置")
                         alertView.show()
                     } else {
                         self._pushToSelectPhotos()

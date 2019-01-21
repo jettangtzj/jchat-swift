@@ -4,6 +4,7 @@
 //
 //  Created by deng on 2017/2/16.
 //  Copyright © 2017年 HXHG. All rights reserved.
+//  “我”界面
 //
 
 import UIKit
@@ -136,7 +137,7 @@ extension JCMineViewController: UITableViewDelegate, UITableViewDataSource {
         case 2:
             cell.title = "意见反馈"
         case 3:
-            cell.title = "关于JChat"
+            cell.title = "关于我们"
         default:
             break
         }

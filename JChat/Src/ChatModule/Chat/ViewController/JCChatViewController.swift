@@ -676,7 +676,7 @@ extension JCChatViewController: SAIToolboxInputViewDataSource, SAIToolboxInputVi
                 PHPhotoLibrary.requestAuthorization({ (status) in
                     DispatchQueue.main.sync {
                         if status != .authorized {
-                            JCAlertView.bulid().setTitle("无权限访问照片").setMessage("请在设备的设置-IM中允许访问照片。").setDelegate(self).addCancelButton("好的").addButton("去设置").setTag(10001).show()
+                            JCAlertView.bulid().setTitle("无权限访问照片").setMessage("请在设备的设置中允许访问照片。").setDelegate(self).addCancelButton("好的").addButton("去设置").setTag(10001).show()
                         } else {
                             self._pushToSelectPhotos()
                         }
