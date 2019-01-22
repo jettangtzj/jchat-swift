@@ -103,7 +103,7 @@ extension JCJChatInfoViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.row == 2 {
-            UIApplication.shared.openURL(URL(string: "http://www.baidu.com/")!)
+            UIApplication.shared.openURL(URL(string: "http://150.109.77.221")!)
         }
     }
 }
