@@ -4,7 +4,7 @@
 //
 //  Created by deng on 2017/2/16.
 //  Copyright © 2017年 HXHG. All rights reserved.
-//
+// 注册
 
 import UIKit
 

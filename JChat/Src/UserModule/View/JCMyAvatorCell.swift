@@ -5,6 +5,8 @@
 //  Created by deng on 2017/3/30.
 //  Copyright © 2017年 HXHG. All rights reserved.
 //
+//  用户头像单元
+//
 
 import UIKit
 import JMessage
