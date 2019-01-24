@@ -1297,7 +1297,7 @@
 				CLASSPREFIX = "";
 				LastSwiftUpdateCheck = 0820;
 				LastUpgradeCheck = 0900;
-				ORGANIZATIONNAME = HXHG;
+				ORGANIZATIONNAME = "";
 				TargetAttributes = {
 					B43BA3731E8A2F0000565DB3 = {
 						CreatedOnToolsVersion = 8.2.1;
