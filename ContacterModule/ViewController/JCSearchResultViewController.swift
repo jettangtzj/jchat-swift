@@ -2,9 +2,7 @@
 //  JCSearchResultViewController.swift
 //  JChat
 //
-//  Created by deng on 2017/5/5.
-//  Copyright © 2017年 HXHG. All rights reserved.
-//
+//  搜索结果
 
 import UIKit
 

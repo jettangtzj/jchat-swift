@@ -2,8 +2,7 @@
 //  JCUpdateMemberViewController.swift
 //  JChat
 //
-//  Created by deng on 2017/5/11.
-//  Copyright © 2017年 HXHG. All rights reserved.
+//  搜索会员、选择会员添加为群成员或用于个人聊天中发起群聊界面
 //
 
 import UIKit
@@ -30,7 +29,8 @@ class JCUpdateMemberViewController: UIViewController {
 
     private var topOffset: CGFloat {
         if isIPhoneX {
-            return 88
+            //return 88
+            return 112
         }
         return 64
     }

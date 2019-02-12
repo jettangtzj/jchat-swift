@@ -2,8 +2,7 @@
 //  JCGroupNameViewController.swift
 //  JChat
 //
-//  Created by deng on 2017/5/16.
-//  Copyright © 2017年 HXHG. All rights reserved.
+//  群聊名称显示与设置界面
 //
 
 import UIKit
@@ -11,6 +10,7 @@ import JMessage
 
 class JCGroupNameViewController: UIViewController {
 
+    //群信息
     var group: JMSGGroup!
     
     override func viewDidLoad() {
@@ -30,10 +30,14 @@ class JCGroupNameViewController: UIViewController {
         }
         return 64
     }
+    //设置完成按钮
     private lazy var navRightButton: UIBarButtonItem = UIBarButtonItem(title: "完成", style: .plain, target: self, action: #selector(_saveNickname))
+    //群名称的输入框
     fileprivate lazy var groupNameTextField: UITextField = UITextField(frame: CGRect(x: 0, y: self.topOffset, width: self.view.width, height: 45))
+    //提示标签
     fileprivate lazy var tipLabel:  UILabel = UILabel(frame: CGRect(x: self.view.width - 15 - 50, y: self.topOffset + 21, width: 28, height: 12))
     
+    //群名称
     private var groupName = ""
     
     //MARK: - private func
@@ -61,6 +65,7 @@ class JCGroupNameViewController: UIViewController {
         navigationItem.rightBarButtonItem =  navRightButton
     }
 
+    //输入框内容改变事件
     func textFieldDidChanged(_ textField: UITextField) {
         if textField.markedTextRange == nil {
             let text = textField.text!

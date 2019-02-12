@@ -2,8 +2,7 @@
 //  GroupAvatorViewController.swift
 //  JChat
 //
-//  Created by 邓永豪 on 2017/9/19.
-//  Copyright © 2017年 HXHG. All rights reserved.
+//  群头像显示和设置界面
 //
 
 import UIKit
@@ -30,6 +29,7 @@ class GroupAvatorViewController: UIViewController {
         navigationController?.navigationBar.barTintColor = UIColor(netHex: 0x2dd0cf)
     }
 
+    //图片选择
     fileprivate lazy var imagePicker: UIImagePickerController = {
         var picker = UIImagePickerController()
         picker.sourceType = .camera
@@ -38,7 +38,8 @@ class GroupAvatorViewController: UIViewController {
         picker.delegate = self
         return picker
     }()
-
+    
+    //头像显示的控件
     fileprivate lazy var imageView: UIImageView = {
         var imageView = UIImageView()
         imageView.frame = UIScreen.main.bounds
@@ -63,6 +64,7 @@ class GroupAvatorViewController: UIViewController {
         }
     }
 
+    //设置右导航按钮
     private func _setupNavigation() {
         let navButton = UIButton(frame: CGRect(x: 0, y: 0, width: 18, height: 18))
         navButton.setImage(UIImage.loadImage("com_icon_file_more"), for: .normal)
@@ -71,12 +73,14 @@ class GroupAvatorViewController: UIViewController {
         navigationItem.rightBarButtonItems =  [item]
     }
 
+    //右导航按钮事件，启动action sheet
     func _more() {
         let actionSheet = UIActionSheet(title: nil, delegate: self, cancelButtonTitle: "取消", destructiveButtonTitle: nil, otherButtonTitles: "从相册中选择", "拍照")
         actionSheet.show(in: self.view)
     }
 }
 
+//action sheet事件
 extension GroupAvatorViewController: UIActionSheetDelegate {
     func actionSheet(_ actionSheet: UIActionSheet, clickedButtonAt buttonIndex: Int) {
         switch buttonIndex {
@@ -97,6 +101,7 @@ extension GroupAvatorViewController: UIActionSheetDelegate {
     }
 }
 
+//图片选择后的处理
 extension GroupAvatorViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
     // MARK: - UIImagePickerControllerDelegate
@@ -104,8 +109,9 @@ extension GroupAvatorViewController: UINavigationControllerDelegate, UIImagePick
         picker.dismiss(animated: true, completion: nil)
     }
 
+    //选择完成后的处理
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-
+        //图片上传
         var image = info[UIImagePickerControllerEditedImage] as! UIImage?
         image = image?.fixOrientation()
         if image != nil {

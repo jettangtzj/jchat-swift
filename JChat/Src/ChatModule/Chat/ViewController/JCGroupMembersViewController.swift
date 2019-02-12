@@ -2,8 +2,7 @@
 //  JCGroupMembersViewController.swift
 //  JChat
 //
-//  Created by deng on 2017/5/10.
-//  Copyright © 2017年 HXHG. All rights reserved.
+//  群成员列表显示和搜索界面
 //
 
 import UIKit

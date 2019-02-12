@@ -2,8 +2,7 @@
 //  JCGroupDescViewController.swift
 //  JChat
 //
-//  Created by deng on 2017/5/16.
-//  Copyright © 2017年 HXHG. All rights reserved.
+//  群描述显示与设置界面
 //
 
 import UIKit
@@ -11,6 +10,7 @@ import JMessage
 
 class JCGroupDescViewController: UIViewController {
     
+    //群信息
     var group: JMSGGroup!
     
     override func viewDidLoad() {
@@ -23,9 +23,13 @@ class JCGroupDescViewController: UIViewController {
         descTextView.becomeFirstResponder()
     }
 
+    //背景区域
     private lazy var bgView: UIView = UIView(frame: CGRect(x: 0, y: 64, width: self.view.width, height: 120))
+    //描述内容的输入控件
     private lazy var descTextView: UITextView = UITextView(frame: CGRect(x: 15, y: 15, width: self.view.width - 30, height: 90))
+    //完成按钮
     private lazy var navRightButton: UIBarButtonItem = UIBarButtonItem(title: "完成", style: .plain, target: self, action: #selector(_saveSignature))
+    //提示标签控件
     fileprivate lazy var tipLabel:  UILabel = UILabel(frame: CGRect(x: self.bgView.width - 15 - 50, y: self.bgView.height - 24, width: 50, height: 12))
     
     //MARK: - private func
@@ -50,6 +54,7 @@ class JCGroupDescViewController: UIViewController {
         _setupNavigation()
     }
     
+    //设置导航按钮
     private func _setupNavigation() {
         navigationItem.rightBarButtonItem =  navRightButton
     }
@@ -63,6 +68,7 @@ class JCGroupDescViewController: UIViewController {
         if name!.isEmpty {
             name = nil
         }
+        //更新群描述信息
         JMSGGroup.updateGroupInfo(withGroupId: group.gid, name: name, desc: desc) { (result, error) in
             MBProgressHUD_JChat.hide(forView: self.view, animated: true)
             if error == nil {
@@ -75,6 +81,7 @@ class JCGroupDescViewController: UIViewController {
     }
 }
 
+//80个文字的提示
 extension JCGroupDescViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         textView.limitNonMarkedTextSize(80)

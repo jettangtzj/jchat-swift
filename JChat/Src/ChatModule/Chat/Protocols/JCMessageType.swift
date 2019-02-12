@@ -1,17 +1,16 @@
 //
 //  JCMessageType.swift
 //  JChat
+//  消息对象
 //
-//  Created by deng on 10/04/2017.
-//  Copyright © 2017 HXHG. All rights reserved.
-//
+
 
 import Foundation
 import JMessage
 
 @objc public enum MessageTargetType: Int {
-    case single = 0
-    case group
+    case single = 0//个人消息
+    case group//群组消息
 }
 
 @objc public protocol JCMessageType: class {

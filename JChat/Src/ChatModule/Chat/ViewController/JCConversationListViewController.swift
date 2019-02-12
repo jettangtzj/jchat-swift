@@ -1,10 +1,8 @@
 //
 //  JCConversationListViewController.swift
 //  JChat
-//
-//  Created by deng on 2017/2/16.
-//  Copyright © 2017年 HXHG. All rights reserved.
-//
+//  会话列表界面
+
 
 import UIKit
 import JMessage
@@ -12,6 +10,7 @@ import YHPopupView
 
 class JCConversationListViewController: UIViewController {
     
+    //会话数据数组
     var datas: [JMSGConversation] = []
 
     //MARK: - life cycle
@@ -36,15 +35,21 @@ class JCConversationListViewController: UIViewController {
     }
 
     deinit {
+        //销毁时移除
         NotificationCenter.default.removeObserver(self)
         JMessage.remove(self, with: nil)
     }
     
+    //是否正在连接通讯服务器
     fileprivate var isConnecting = false
     
+    //界面右上的加号按钮
     private lazy var addButton = UIButton(frame: CGRect(x: 0, y: 0, width: 36, height: 36))
+    //搜索界面
     private lazy var searchController: JCSearchController = JCSearchController(searchResultsController: JCNavigationController(rootViewController: JCSearchResultViewController()))
+    //搜索区域
     private lazy var searchView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.width, height: 36))
+    //列表
     fileprivate lazy var tableview: UITableView = {
         var tableview = UITableView(frame: CGRect(x: 0, y: 0, width: self.view.width, height: self.view.height))
         tableview.delegate = self
@@ -54,8 +59,11 @@ class JCConversationListViewController: UIViewController {
         tableview.separatorStyle = .none
         return tableview
     }()
+    //错误提示
     fileprivate lazy var errorTips: JCNetworkTipsCell = JCNetworkTipsCell()
+    //是否提示在显示
     fileprivate var showNetworkTips = false
+    //暂无会话的显示区域
     fileprivate lazy var emptyView: UIView = {
         let view = UIView(frame: CGRect(x: 0, y: 64 + 36, width: self.view.width, height: self.view.height - 64 - 36))
         view.isHidden = true
@@ -68,7 +76,7 @@ class JCConversationListViewController: UIViewController {
         view.addSubview(tips)
         return view
     }()
-    
+    //顶部提示
     fileprivate lazy var titleTips: UILabel = {
         var tips = UILabel(frame: CGRect(x: 23, y: 0, width: 67, height: 44))
         tips.font = UIFont.systemFont(ofSize: 18)
@@ -77,7 +85,7 @@ class JCConversationListViewController: UIViewController {
         tips.backgroundColor = UIColor(netHex: 0x5AD4D3)
         return tips
     }()
-
+    //顶部提示区域
     fileprivate lazy var titleTipsView: UIView = {
         var view = UIView(frame: CGRect(x: self.view.width / 2 - 45, y: 20, width: 90, height: 44))
         view.backgroundColor =  UIColor(netHex: 0x5AD4D3)
@@ -121,6 +129,7 @@ class JCConversationListViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(connecting), name: NSNotification.Name.jmsgNetworkIsConnecting, object: nil)
     }
     
+    //网络状态变化事件
     func reachabilityChanged(note: NSNotification) {
         if let curReach = note.object as? Reachability {
             let status = curReach.currentReachabilityStatus()
@@ -133,6 +142,7 @@ class JCConversationListViewController: UIViewController {
         }
     }
     
+    //设置右上按钮
     private func _setupNavigation() {
         addButton.addTarget(self, action: #selector(_clickNavRightButton(_:)), for: .touchUpInside)
         addButton.setImage(UIImage.loadImage("com_icon_add"), for: .normal)
@@ -140,6 +150,7 @@ class JCConversationListViewController: UIViewController {
         navigationItem.rightBarButtonItem =  item
     }
     
+    //更新会话数量游标
     func _updateBadge() {
         let count = datas.unreadCount
         if count > 99 {
@@ -149,6 +160,7 @@ class JCConversationListViewController: UIViewController {
         }
     }
     
+    //获取会话数据
     func _getConversations() {
         JMSGConversation.allConversations { (result, error) in
             guard let conversatios = result else {
@@ -157,7 +169,7 @@ class JCConversationListViewController: UIViewController {
             self.datas = conversatios as! [JMSGConversation]
             self.datas = self.sortConverstaions(self.datas)
             self.tableview.reloadData()
-            if self.datas.count == 0 {
+            if self.datas.count == 0 {//没有数据则空区域显示
                 self.emptyView.isHidden = false
             } else {
                 self.emptyView.isHidden = true
@@ -166,6 +178,7 @@ class JCConversationListViewController: UIViewController {
         }
     }
 
+    //会话信息排序
     fileprivate func sortConverstaions(_ convs: [JMSGConversation]) -> [JMSGConversation] {
         var stickyConvs: [JMSGConversation] = []
         var allConvs: [JMSGConversation] = []
@@ -191,9 +204,11 @@ class JCConversationListViewController: UIViewController {
         _setupPopView()
     }
     
+    //弹出界面
     private func _setupPopView() {
         presentPopupView(selectView)
     }
+    
     
     fileprivate lazy var selectView: YHPopupView = {
         let popupView = MorePopupView(frame: CGRect(x: self.view.width - 150, y: 65, width: 145, height: 554 / 3))
@@ -202,12 +217,15 @@ class JCConversationListViewController: UIViewController {
     }()
 }
 
+//扩展 设置tableview数据源
 extension JCConversationListViewController: UITableViewDelegate, UITableViewDataSource {
     
+    //行数
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return showNetworkTips ? datas.count + 1 : datas.count
     }
     
+    //行内容
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if showNetworkTips && indexPath.row == 0 {
             errorTips.selectionStyle = .none
@@ -216,6 +234,7 @@ extension JCConversationListViewController: UITableViewDelegate, UITableViewData
         return tableView.dequeueReusableCell(withIdentifier: "JCConversationCell", for: indexPath)
     }
     
+    //单行数据
     public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard let cell = cell as? JCConversationCell else {
             return
@@ -223,6 +242,7 @@ extension JCConversationListViewController: UITableViewDelegate, UITableViewData
         cell.bindConversation(datas[showNetworkTips ? indexPath.row - 1 : indexPath.row])
     }
     
+    //设置行高
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if showNetworkTips && indexPath.row == 0 {
             return 40
@@ -230,6 +250,7 @@ extension JCConversationListViewController: UITableViewDelegate, UITableViewData
         return 65
     }
     
+    //选择其中一行的操作
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if showNetworkTips && indexPath.row == 0 {
@@ -250,10 +271,12 @@ extension JCConversationListViewController: UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        //会话删除操作
         let action1 = UITableViewRowAction(style: .destructive, title: "删除") { (action, indexPath) in
             self._delete(indexPath)
         }
         let conversation = datas[showNetworkTips ? indexPath.row - 1 : indexPath.row]
+        //会话置顶操作
         let action2 = UITableViewRowAction(style: .normal, title: "置顶") { (action, indexPath) in
             conversation.ex.isSticky = !conversation.ex.isSticky
             self._getConversations()
@@ -266,6 +289,7 @@ extension JCConversationListViewController: UITableViewDelegate, UITableViewData
         return [action1, action2]
     }
 
+    //从列表中删除该会话
     private func _delete(_ indexPath: IndexPath) {
         let conversation = datas[indexPath.row]
         let tager = conversation.target
@@ -292,6 +316,7 @@ extension JCConversationListViewController: UITableViewDelegate, UITableViewData
     
 }
 
+//弹出界面操作
 extension JCConversationListViewController: MorePopupViewDelegate {
     func popupView(view: MorePopupView, addGroup addButton: UIButton) {
         dismissPopupView()
@@ -319,35 +344,44 @@ extension JCConversationListViewController: MorePopupViewDelegate {
     }
 }
 
+//消息代理
 extension JCConversationListViewController: JMessageDelegate {
     
+    //收到错误消息
     func onReceive(_ message: JMSGMessage!, error: Error!) {
         _getConversations()
     }
     
+    //会话改变
     func onConversationChanged(_ conversation: JMSGConversation!) {
         _getConversations()
     }
     
+    //群信息改变
     func onGroupInfoChanged(_ group: JMSGGroup!) {
         _getConversations()
     }
     
+    //同步在线消息
     func onSyncRoamingMessageConversation(_ conversation: JMSGConversation!) {
         _getConversations()
     }
     
+    //离线消息
     func onSyncOfflineMessageConversation(_ conversation: JMSGConversation!, offlineMessages: [JMSGMessage]!) {
         _getConversations()
     }
     
+    //收到消息
     func onReceive(_ retractEvent: JMSGMessageRetractEvent!) {
         _getConversations()
     }
     
 }
 
+//搜索代理
 extension JCConversationListViewController: UISearchControllerDelegate {
+    //显示搜索区域界面
     func willPresentSearchController(_ searchController: UISearchController) {
         tableview.isHidden = true
         emptyView.isHidden = true
@@ -357,6 +391,7 @@ extension JCConversationListViewController: UISearchControllerDelegate {
             self.navigationController?.tabBarController?.tabBar.isHidden = true
         }
     }
+    //隐藏搜索区域界面
     func willDismissSearchController(_ searchController: UISearchController) {
         UIView.animate(withDuration: 0.35) {
             self.emptyView.frame = CGRect(x: 0, y: 64 + 36, width: self.view.width, height: self.view.height - 64 - 36)
@@ -372,7 +407,7 @@ extension JCConversationListViewController: UISearchControllerDelegate {
     }
 }
 
-// MARK: - network tips
+//网络状态处理
 extension JCConversationListViewController {
     
     func reachable() {

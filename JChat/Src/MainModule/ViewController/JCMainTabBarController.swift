@@ -1,12 +1,12 @@
 //
 //  JCMainTabBarController.swift
-//  JChat
+//  主界面
 //
-//  Created by deng on 2017/2/16.
-//  Copyright © 2017年 HXHG. All rights reserved.
+//
 //
 
 import UIKit
+
 
 class JCMainTabBarController: UITabBarController {
 
@@ -18,7 +18,7 @@ class JCMainTabBarController: UITabBarController {
 
     //MARK: - private func
     private func setupChildControllers() {
-        // 会话
+        // 会话栏
         let conversationVC = JCConversationListViewController()
         conversationVC.title = "会话"
         let chatTabBar = UITabBarItem(title: "会话",
@@ -28,7 +28,7 @@ class JCMainTabBarController: UITabBarController {
         let chatNav = JCNavigationController(rootViewController: conversationVC)
         chatNav.tabBarItem = chatTabBar
         
-        // 通讯录
+        // 通讯录栏
         let contactsVC = JCContactsViewController()
         contactsVC.title = "通讯录"
         let contactsTabBar = UITabBarItem(title: "通讯录",
@@ -48,7 +48,7 @@ class JCMainTabBarController: UITabBarController {
         }
         contactsNav.tabBarItem = contactsTabBar
         
-        // 我
+        // 我 个人信息栏
         let mineVC = JCMineViewController()
         mineVC.title = "我"
         let mineTabBar = UITabBarItem(title: "我",

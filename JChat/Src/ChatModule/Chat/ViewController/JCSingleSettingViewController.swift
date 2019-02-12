@@ -2,8 +2,7 @@
 //  JCSingleSettingViewController.swift
 //  JChat
 //
-//  Created by deng on 2017/4/5.
-//  Copyright © 2017年 HXHG. All rights reserved.
+//  个人聊天设置界面
 //
 
 import UIKit
@@ -11,6 +10,7 @@ import JMessage
 
 class JCSingleSettingViewController: UIViewController, CustomNavigation {
     
+    //聊天对象
     var user: JMSGUser!
 
     override func viewDidLoad() {
@@ -18,6 +18,7 @@ class JCSingleSettingViewController: UIViewController, CustomNavigation {
         _init()
     }
 
+    //界面tableviewy
     private lazy var tableView: UITableView = {
         var tableView = UITableView(frame: CGRect(x: 0, y: 0, width: self.view.width, height: self.view.height), style: .grouped)
         tableView.separatorStyle = .none
@@ -31,6 +32,7 @@ class JCSingleSettingViewController: UIViewController, CustomNavigation {
         return tableView
     }()
     
+    //返回按钮
     fileprivate lazy var leftButton = UIButton(frame: CGRect(x: 0, y: 0, width: 60, height: 65 / 3))
     
     //MARK: - private func 
@@ -43,26 +45,30 @@ class JCSingleSettingViewController: UIViewController, CustomNavigation {
     }
 }
 
+//界面设置
 extension JCSingleSettingViewController: UITableViewDelegate, UITableViewDataSource {
     
+    //设置section数量
     func numberOfSections(in tableView: UITableView) -> Int {
         return 3
     }
     
+    //设置每个section的行数
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         switch section {
-        case 0:
+        case 0://聊天对象头像行
             return 1
-        case 1:
+        case 1://聊天设置行
             return 3
-        case 2:
+        case 2://按钮行
             return 1
         default:
             return 0
         }
     }
     
+    //设置每个section的行高
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section {
         case 0:
@@ -76,6 +82,7 @@ extension JCSingleSettingViewController: UITableViewDelegate, UITableViewDataSou
         }
     }
     
+    //设置section header的高度
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
             return 0.0001
@@ -83,7 +90,7 @@ extension JCSingleSettingViewController: UITableViewDelegate, UITableViewDataSou
         return 10
     }
     
-    
+    //设置section中复用行的样式
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             return tableView.dequeueReusableCell(withIdentifier: "JCSingleSettingCell", for: indexPath)
@@ -94,6 +101,7 @@ extension JCSingleSettingViewController: UITableViewDelegate, UITableViewDataSou
         return tableView.dequeueReusableCell(withIdentifier: "JCMineInfoCell", for: indexPath)
     }
     
+    //设置section中的内容
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.selectionStyle = .none
         if indexPath.section == 2 {
@@ -145,6 +153,7 @@ extension JCSingleSettingViewController: UITableViewDelegate, UITableViewDataSou
         }
     }
     
+    //设置能选中行内容的事件
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.section == 1 {
@@ -167,6 +176,7 @@ extension JCSingleSettingViewController: UITableViewDelegate, UITableViewDataSou
     }
 }
 
+//清空聊天记录行的action sheet事件
 extension JCSingleSettingViewController: UIActionSheetDelegate {
     func actionSheet(_ actionSheet: UIActionSheet, clickedButtonAt buttonIndex: Int) {
         //        if actionSheet.tag == 1001 {
@@ -185,6 +195,7 @@ extension JCSingleSettingViewController: UIActionSheetDelegate {
     
 }
 
+//修改消息免打扰设置的处理
 extension JCSingleSettingViewController: JCMineInfoCellDelegate {
     func mineInfoCell(clickSwitchButton button: UISwitch, indexPath: IndexPath?) {
         if user.isNoDisturb != button.isOn {
@@ -201,6 +212,7 @@ extension JCSingleSettingViewController: JCMineInfoCellDelegate {
     }
 }
 
+//删除好友或添加好友的操作
 extension JCSingleSettingViewController: JCButtonCellDelegate {
     func buttonCell(clickButton button: UIButton) {
         if user.isFriend {
@@ -214,6 +226,7 @@ extension JCSingleSettingViewController: JCButtonCellDelegate {
     }
 }
 
+//删除好友的操作
 extension JCSingleSettingViewController: UIAlertViewDelegate {
     func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int) {
         if buttonIndex == 1 {
@@ -233,7 +246,9 @@ extension JCSingleSettingViewController: UIAlertViewDelegate {
     }
 }
 
+//
 extension JCSingleSettingViewController: JCSingleSettingCellDelegate {
+    //添加会员创建群聊操作
     func singleSettingCell(clickAddButton button: UIButton) {
         let vc = JCUpdateMemberViewController()
         vc.isAddMember = false
@@ -241,6 +256,7 @@ extension JCSingleSettingViewController: JCSingleSettingCellDelegate {
         navigationController?.pushViewController(vc, animated: true)
     }
     
+    //显示会员信息操作
     func singleSettingCell(clickAvatorButton button: UIButton) {
         let vc = JCUserInfoViewController()
         vc.user = user
@@ -249,6 +265,7 @@ extension JCSingleSettingViewController: JCSingleSettingCellDelegate {
     }
 }
 
+//手势识别
 extension JCSingleSettingViewController: UIGestureRecognizerDelegate {
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         return true

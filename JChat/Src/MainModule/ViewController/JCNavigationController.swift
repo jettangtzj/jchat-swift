@@ -1,9 +1,7 @@
 //
 //  JCNavigationController.swift
 //  JChat
-//
-//  Created by deng on 2017/2/16.
-//  Copyright © 2017年 HXHG. All rights reserved.
+//  页签界面
 //
 
 import UIKit
@@ -17,6 +15,7 @@ extension CustomNavigation {
         guard let vc = delegate as? UIViewController else {
             return
         }
+        //返回按钮
         let leftButton = UIButton(frame: CGRect(x: 0, y: 0, width: 60, height: 65 / 3))
         leftButton.setImage(UIImage.loadImage("com_icon_back"), for: .normal)
         leftButton.setImage(UIImage.loadImage("com_icon_back"), for: .highlighted)
@@ -35,6 +34,7 @@ extension CustomNavigation {
     }
 }
 
+//导航控制
 final class JCNavigationController: UINavigationController {
 
     //MARK: - life cycle

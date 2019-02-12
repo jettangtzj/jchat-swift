@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0A4A7E2CF0C56EA64144D6F1 /* Pods_JChatUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C5229541B366E492E890423 /* Pods_JChatUITests.framework */; };
 		650AA8941F8A6FF400D28338 /* JMSGOptionalContent+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650AA8931F8A6FF400D28338 /* JMSGOptionalContent+.swift */; };
 		6517E08B1F90BBD9005A4B21 /* UISearchBar+JChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6517E08A1F90BBD9005A4B21 /* UISearchBar+JChat.swift */; };
 		651F362E1F53C14C00C9AAFD /* DLLRUCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 651F361F1F53C14C00C9AAFD /* DLLRUCache.m */; };
@@ -45,7 +44,6 @@
 		65D311E11F8A8070006BAFDD /* UIViewController+JChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D311E01F8A8070006BAFDD /* UIViewController+JChat.swift */; };
 		65E081711F7D49460088730D /* UserDefaultValidationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E0816F1F7D49460088730D /* UserDefaultValidationService.swift */; };
 		65EA27881F70F5DE00E489C4 /* GroupAvatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EA27871F70F5DE00E489C4 /* GroupAvatorCell.swift */; };
-		AC3A15961D2DE46D0DABF7EB /* Pods_JChatTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBCCA1A62435BE8F41C4D275 /* Pods_JChatTests.framework */; };
 		B401970F1EF3B34C006B9F2D /* JCNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B401970E1EF3B34C006B9F2D /* JCNetworkManager.swift */; };
 		B401E5061E8B4A6C003ABE08 /* JCSignatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B401E5051E8B4A6C003ABE08 /* JCSignatureViewController.swift */; };
 		B401E5081E8B7B9D003ABE08 /* JCNicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B401E5071E8B7B9D003ABE08 /* JCNicknameViewController.swift */; };
@@ -63,8 +61,6 @@
 		B417BD191F25F416009E27CF /* JCFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B417BD181F25F416009E27CF /* JCFileManager.swift */; };
 		B43BA3781E8A2F0000565DB3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43BA3771E8A2F0000565DB3 /* AppDelegate.swift */; };
 		B43BA37F1E8A2F0000565DB3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B43BA37E1E8A2F0000565DB3 /* Assets.xcassets */; };
-		B43BA38D1E8A2F0000565DB3 /* JChatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43BA38C1E8A2F0000565DB3 /* JChatTests.swift */; };
-		B43BA3981E8A2F0000565DB3 /* JChatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43BA3971E8A2F0000565DB3 /* JChatUITests.swift */; };
 		B43BA3F41E8A2FF500565DB3 /* emoticons.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B43BA3A81E8A2FF500565DB3 /* emoticons.bundle */; };
 		B43BA3F51E8A2FF500565DB3 /* JCCEmoticon.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43BA3AD1E8A2FF500565DB3 /* JCCEmoticon.swift */; };
 		B43BA3F61E8A2FF500565DB3 /* JCCEmoticonGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43BA3AE1E8A2FF500565DB3 /* JCCEmoticonGroup.swift */; };
@@ -230,23 +226,6 @@
 		D7AAC4D421E4827E0016BABC /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D7AAC4D321E4827E0016BABC /* libstdc++.6.0.9.tbd */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		B43BA3891E8A2F0000565DB3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B43BA36C1E8A2F0000565DB3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B43BA3731E8A2F0000565DB3;
-			remoteInfo = JChat;
-		};
-		B43BA3941E8A2F0000565DB3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B43BA36C1E8A2F0000565DB3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B43BA3731E8A2F0000565DB3;
-			remoteInfo = JChat;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		25107AB0699A2A0F65F5F140 /* Pods-JChatUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JChatUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JChatUITests/Pods-JChatUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		2D9B8B0D7A37CB5A64B1F049 /* Pods-JChatTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JChatTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JChatTests/Pods-JChatTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -320,10 +299,8 @@
 		B43BA3771E8A2F0000565DB3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B43BA37E1E8A2F0000565DB3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B43BA3831E8A2F0000565DB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B43BA3881E8A2F0000565DB3 /* JChatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JChatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B43BA38C1E8A2F0000565DB3 /* JChatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JChatTests.swift; sourceTree = "<group>"; };
 		B43BA38E1E8A2F0000565DB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B43BA3931E8A2F0000565DB3 /* JChatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JChatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B43BA3971E8A2F0000565DB3 /* JChatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JChatUITests.swift; sourceTree = "<group>"; };
 		B43BA3991E8A2F0000565DB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B43BA3A81E8A2FF500565DB3 /* emoticons.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = emoticons.bundle; sourceTree = "<group>"; };
@@ -522,22 +499,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B43BA3851E8A2F0000565DB3 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				AC3A15961D2DE46D0DABF7EB /* Pods_JChatTests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B43BA3901E8A2F0000565DB3 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0A4A7E2CF0C56EA64144D6F1 /* Pods_JChatUITests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -692,8 +653,6 @@
 			isa = PBXGroup;
 			children = (
 				B43BA3741E8A2F0000565DB3 /* JChat.app */,
-				B43BA3881E8A2F0000565DB3 /* JChatTests.xctest */,
-				B43BA3931E8A2F0000565DB3 /* JChatUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1250,44 +1209,6 @@
 			productReference = B43BA3741E8A2F0000565DB3 /* JChat.app */;
 			productType = "com.apple.product-type.application";
 		};
-		B43BA3871E8A2F0000565DB3 /* JChatTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B43BA39F1E8A2F0000565DB3 /* Build configuration list for PBXNativeTarget "JChatTests" */;
-			buildPhases = (
-				A1CA4E549E63FE8C93D41504 /* [CP] Check Pods Manifest.lock */,
-				B43BA3841E8A2F0000565DB3 /* Sources */,
-				B43BA3851E8A2F0000565DB3 /* Frameworks */,
-				B43BA3861E8A2F0000565DB3 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				B43BA38A1E8A2F0000565DB3 /* PBXTargetDependency */,
-			);
-			name = JChatTests;
-			productName = JChatTests;
-			productReference = B43BA3881E8A2F0000565DB3 /* JChatTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		B43BA3921E8A2F0000565DB3 /* JChatUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B43BA3A21E8A2F0000565DB3 /* Build configuration list for PBXNativeTarget "JChatUITests" */;
-			buildPhases = (
-				AADD78A84D0D251530A7C48A /* [CP] Check Pods Manifest.lock */,
-				B43BA38F1E8A2F0000565DB3 /* Sources */,
-				B43BA3901E8A2F0000565DB3 /* Frameworks */,
-				B43BA3911E8A2F0000565DB3 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				B43BA3951E8A2F0000565DB3 /* PBXTargetDependency */,
-			);
-			name = JChatUITests;
-			productName = JChatUITests;
-			productReference = B43BA3931E8A2F0000565DB3 /* JChatUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1301,25 +1222,13 @@
 				TargetAttributes = {
 					B43BA3731E8A2F0000565DB3 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 5HXJWDD9P4;
+						DevelopmentTeam = 44GMGS5A74;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
 							};
 						};
-					};
-					B43BA3871E8A2F0000565DB3 = {
-						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 5HXJWDD9P4;
-						ProvisioningStyle = Automatic;
-						TestTargetID = B43BA3731E8A2F0000565DB3;
-					};
-					B43BA3921E8A2F0000565DB3 = {
-						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 5HXJWDD9P4;
-						ProvisioningStyle = Automatic;
-						TestTargetID = B43BA3731E8A2F0000565DB3;
 					};
 				};
 			};
@@ -1337,8 +1246,6 @@
 			projectRoot = "";
 			targets = (
 				B43BA3731E8A2F0000565DB3 /* JChat */,
-				B43BA3871E8A2F0000565DB3 /* JChatTests */,
-				B43BA3921E8A2F0000565DB3 /* JChatUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -1364,20 +1271,6 @@
 				B43BA3F41E8A2FF500565DB3 /* emoticons.bundle in Resources */,
 				B43F70511EA883DA0076D5AF /* AddMapTableViewCell.xib in Resources */,
 				B403F4341EBAF24F00011630 /* area.plist in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B43BA3861E8A2F0000565DB3 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B43BA3911E8A2F0000565DB3 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1444,42 +1337,6 @@
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-JChat-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A1CA4E549E63FE8C93D41504 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-JChatTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		AADD78A84D0D251530A7C48A /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-JChatUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1681,36 +1538,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B43BA3841E8A2F0000565DB3 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B43BA38D1E8A2F0000565DB3 /* JChatTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B43BA38F1E8A2F0000565DB3 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B43BA3981E8A2F0000565DB3 /* JChatUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		B43BA38A1E8A2F0000565DB3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B43BA3731E8A2F0000565DB3 /* JChat */;
-			targetProxy = B43BA3891E8A2F0000565DB3 /* PBXContainerItemProxy */;
-		};
-		B43BA3951E8A2F0000565DB3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B43BA3731E8A2F0000565DB3 /* JChat */;
-			targetProxy = B43BA3941E8A2F0000565DB3 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		B43BA39A1E8A2F0000565DB3 /* Debug */ = {
@@ -1824,7 +1652,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = JChat/JChat.entitlements;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 5HXJWDD9P4;
+				DEVELOPMENT_TEAM = 44GMGS5A74;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1844,7 +1672,7 @@
 					"-ObjC",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -D READ_VERSION";
-				PRODUCT_BUNDLE_IDENTIFIER = com.jettang.chat.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = com.doum.imchat.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/JChat/JChat-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
@@ -1861,7 +1689,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = JChat/JChat.entitlements;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 5HXJWDD9P4;
+				DEVELOPMENT_TEAM = 44GMGS5A74;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1881,74 +1709,12 @@
 					"-ObjC",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -D READ_VERSION";
-				PRODUCT_BUNDLE_IDENTIFIER = com.jettang.chat.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = com.doum.imchat.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/JChat/JChat-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/** $(PODS_ROOT)/**";
-			};
-			name = Release;
-		};
-		B43BA3A01E8A2F0000565DB3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2D9B8B0D7A37CB5A64B1F049 /* Pods-JChatTests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = 5HXJWDD9P4;
-				INFOPLIST_FILE = JChatTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dengyonghao.JChatTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JChat.app/JChat";
-			};
-			name = Debug;
-		};
-		B43BA3A11E8A2F0000565DB3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6F45094B9185E340E098980B /* Pods-JChatTests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = 5HXJWDD9P4;
-				INFOPLIST_FILE = JChatTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dengyonghao.JChatTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JChat.app/JChat";
-			};
-			name = Release;
-		};
-		B43BA3A31E8A2F0000565DB3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 25107AB0699A2A0F65F5F140 /* Pods-JChatUITests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = 5HXJWDD9P4;
-				INFOPLIST_FILE = JChatUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dengyonghao.JChatUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_TARGET_NAME = JChat;
-			};
-			name = Debug;
-		};
-		B43BA3A41E8A2F0000565DB3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = ED2FC29D8702D883AAF3E23C /* Pods-JChatUITests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = 5HXJWDD9P4;
-				INFOPLIST_FILE = JChatUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dengyonghao.JChatUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_TARGET_NAME = JChat;
 			};
 			name = Release;
 		};
@@ -1969,24 +1735,6 @@
 			buildConfigurations = (
 				B43BA39D1E8A2F0000565DB3 /* Debug */,
 				B43BA39E1E8A2F0000565DB3 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		B43BA39F1E8A2F0000565DB3 /* Build configuration list for PBXNativeTarget "JChatTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				B43BA3A01E8A2F0000565DB3 /* Debug */,
-				B43BA3A11E8A2F0000565DB3 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		B43BA3A21E8A2F0000565DB3 /* Build configuration list for PBXNativeTarget "JChatUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				B43BA3A31E8A2F0000565DB3 /* Debug */,
-				B43BA3A41E8A2F0000565DB3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

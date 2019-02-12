@@ -2,8 +2,7 @@
 //  JCRecordVoiceHelper.swift
 //  JChatSwift
 //
-//  Created by oshumini on 16/2/22.
-//  Copyright © 2016年 HXHG. All rights reserved.
+//  语音录音
 //
 
 import UIKit
@@ -34,7 +33,7 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
     }
 }
 
-
+//最大录音时间60s
 let maxRecordTime = 60.0
 
 typealias CompletionCallBack = () -> Void

@@ -1,9 +1,6 @@
 //
 //  JCSearchView.swift
-//  JChat
-//
-//  Created by deng on 2017/3/22.
-//  Copyright © 2017年 HXHG. All rights reserved.
+//  搜索框界面
 //
 
 import UIKit
