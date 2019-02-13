@@ -10,8 +10,11 @@ import JMessage
 
 class JCUpdateMemberViewController: UIViewController {
     
+    //是否添加成员 true为添加群聊成员 false发起群聊
     var isAddMember = true
+    //群组信息
     var group: JMSGGroup?
+    //当前用户
     var currentUser: JMSGUser?
 
     override func viewDidLoad() {
@@ -26,7 +29,8 @@ class JCUpdateMemberViewController: UIViewController {
             navigationController?.navigationItem.rightBarButtonItem?.isEnabled = false
         }
     }
-
+    
+    //距上的高度
     private var topOffset: CGFloat {
         if isIPhoneX {
             //return 88
@@ -36,20 +40,29 @@ class JCUpdateMemberViewController: UIViewController {
     }
 
     fileprivate lazy var toolView: UIView = UIView(frame: CGRect(x: 0, y: self.topOffset, width: self.view.width, height: 55))
+    //列表区域
     fileprivate var tableView: UITableView = UITableView(frame: .zero, style: .grouped)
+    //搜索结果区域
     fileprivate var collectionView: UICollectionView!
+    //搜索区域
     fileprivate lazy var searchBar: UISearchBar = UISearchBar.default
+    //确认按钮
     fileprivate lazy var confirm = UIButton(frame: CGRect(x: 0, y: 0, width: 120, height: 28))
     
     fileprivate lazy var users: [JMSGUser] = []
+    //姓名首字母key
     fileprivate lazy var keys: [String] = []
+    //姓名首字母的会员组合数组
     fileprivate lazy var data: Dictionary<String, [JMSGUser]> = Dictionary()
-    
+    //会员过滤数组
     fileprivate lazy var filteredUsersArray: [JMSGUser] = []
+    //已选择上的会员
     fileprivate lazy var selectUsers: [JMSGUser] = []
+    //搜索会员
     fileprivate var searchUser: JMSGUser?
+    //成员组
     fileprivate var members: [JMSGUser]?
-    
+    //提示区域
     fileprivate lazy var tipsView: UIView = {
         let view = UIView(frame: CGRect(x: 0, y: self.topOffset + 31 + 5, width: self.view.width, height: self.view.height - 31 - self.topOffset - 5))
         view.backgroundColor = .white
@@ -108,6 +121,7 @@ class JCUpdateMemberViewController: UIViewController {
         _setupNavigation()
     }
     
+    //设置导航按钮
     private func _setupNavigation() {
         confirm.addTarget(self, action: #selector(_clickNavRightButton(_:)), for: .touchUpInside)
         confirm.setTitle("确定", for: .normal)
@@ -117,6 +131,7 @@ class JCUpdateMemberViewController: UIViewController {
         navigationItem.rightBarButtonItem =  item
     }
     
+    //会员列表排序
     fileprivate func _classify(_ users: [JMSGUser], isFrist: Bool = false) {
         
         if users.count > 0 {
@@ -185,12 +200,14 @@ class JCUpdateMemberViewController: UIViewController {
         }
     }
     
+    //删除用户
     fileprivate func _removeUser(_ user: JMSGUser) {
         selectUsers = selectUsers.filter({ (u) -> Bool in
             u.username != user.username || u.appKey != user.appKey
         })
     }
     
+    //重新加载搜索结果
     fileprivate func _reloadCollectionView() {
         if selectUsers.count > 0 {
             confirm.alpha = 1.0
@@ -230,6 +247,7 @@ class JCUpdateMemberViewController: UIViewController {
         collectionView.reloadData()
     }
     
+    //右键按钮 确定添加成员或发起群聊
     func _clickNavRightButton(_ sender: UIButton) {
         if selectUsers.count == 0 {
             return
@@ -238,7 +256,7 @@ class JCUpdateMemberViewController: UIViewController {
         for item in selectUsers {
             userNames.append(item.username)
         }
-        if isAddMember {
+        if isAddMember {//添加成员
             MBProgressHUD_JChat.showMessage(message: "添加中...", toView: view)
             group?.addMembers(withUsernameArray: userNames, completionHandler: { (result, error) in
                 MBProgressHUD_JChat.hide(forView: self.view, animated: true)
@@ -250,7 +268,7 @@ class JCUpdateMemberViewController: UIViewController {
                 }
             })
         
-        } else {
+        } else {//发起群聊
             if currentUser != nil {
                 userNames.insert((currentUser?.username)!, at: 0)
             }
@@ -277,6 +295,7 @@ class JCUpdateMemberViewController: UIViewController {
         }
     }
     
+    //搜索过滤
     fileprivate func filter(_ searchString: String) {
         if searchString.isEmpty || searchString == "" {
             _classify(users)
@@ -288,9 +307,10 @@ class JCUpdateMemberViewController: UIViewController {
     }
 }
 
-//Mark: -
+//Mark: - 设置会员列表的数据源
 extension JCUpdateMemberViewController: UITableViewDelegate, UITableViewDataSource {
     
+    //默认为0 section， 有过滤会员时以首字母数组个数为section
     func numberOfSections(in tableView: UITableView) -> Int {
         if filteredUsersArray.count > 0 {
             return keys.count
@@ -298,23 +318,27 @@ extension JCUpdateMemberViewController: UITableViewDelegate, UITableViewDataSour
         return 0
     }
     
+    //以这个首字母数组个数为section个数
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data[keys[section]]!.count
     }
     
+    //设置section的header title
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return keys[section]
     }
+    
     
     func sectionIndexTitles(for tableView: UITableView) -> [String]? {
         return keys
     }
     
+    //行高度
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 55
     }
     
-    
+    //头部高度
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
             return 30
@@ -322,11 +346,12 @@ extension JCUpdateMemberViewController: UITableViewDelegate, UITableViewDataSour
         return 10
     }
     
-    
+    //行的原型
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return tableView.dequeueReusableCell(withIdentifier: "JCSelectMemberCell", for: indexPath)
     }
     
+    //行的内容
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard let cell = cell as? JCSelectMemberCell else {
             return
@@ -350,6 +375,7 @@ extension JCUpdateMemberViewController: UITableViewDelegate, UITableViewDataSour
         }
     }
     
+    //选择一行的操作
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         guard let cell = tableView.cellForRow(at: indexPath) as? JCSelectMemberCell else {
@@ -381,6 +407,7 @@ extension JCUpdateMemberViewController: UITableViewDelegate, UITableViewDataSour
     }
 }
 
+//搜索结果的数据设置
 extension JCUpdateMemberViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -416,11 +443,14 @@ extension JCUpdateMemberViewController: UICollectionViewDelegate, UICollectionVi
     }
 }
 
+
+//搜索框的操作
 extension JCUpdateMemberViewController: UISearchBarDelegate {
+    //搜索操作
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         filter(searchText)
     }
-    
+    //搜索按钮点击事件
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         // 搜索非好友
         let searchText = searchBar.text!

@@ -2,12 +2,12 @@
 //  ImageFileViewController.swift
 //  JChat
 //
-//  Created by 邓永豪 on 2017/8/28.
-//  Copyright © 2017年 HXHG. All rights reserved.
+//  图片显示
 //
 
 import UIKit
 
+//消息数组
 var messages: [JMessage] = []
 
 class ImageFileViewController: UIViewController {

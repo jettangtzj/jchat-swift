@@ -2,14 +2,14 @@
 //  FriendsBusinessCardViewController.swift
 //  JChat
 //
-//  Created by 邓永豪 on 2017/9/21.
-//  Copyright © 2017年 HXHG. All rights reserved.
+//  个人名片选择发送
 //
 
 import UIKit
 
 class FriendsBusinessCardViewController: UIViewController {
-
+    
+    //会话
     var conversation: JMSGConversation!
 
     override func viewDidLoad() {
@@ -17,7 +17,9 @@ class FriendsBusinessCardViewController: UIViewController {
         _init()
     }
 
+    //工作区域
     fileprivate lazy var toolView: UIView = UIView(frame: CGRect(x: 0, y: 64, width: self.view.width, height: 55))
+    //列表
     fileprivate lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.delegate = self
@@ -29,18 +31,21 @@ class FriendsBusinessCardViewController: UIViewController {
         tableView.frame = CGRect(x: 0, y: 31 + 64, width: self.view.width, height: self.view.height - 31 - 64)
         return tableView
     }()
+    //搜索区域
     fileprivate lazy var searchView: UISearchBar = UISearchBar.default
-
+    //首字母分组
     fileprivate lazy var users: [JMSGUser] = []
     fileprivate lazy var keys: [String] = []
     fileprivate lazy var data: Dictionary<String, [JMSGUser]> = Dictionary()
-
+    //搜索结果
     fileprivate lazy var filteredUsersArray: [JMSGUser] = []
     fileprivate var searchUser: JMSGUser?
     fileprivate var selectUser: JMSGUser!
 
+    //导航左键 取消按钮
     private lazy var navLeftButton: UIBarButtonItem = UIBarButtonItem(title: "取消", style: .plain, target: self, action: #selector(_clickNavLeftButton))
 
+    //提示区域
     fileprivate lazy var tipsView: UIView = {
         let view = UIView(frame: CGRect(x: 0, y: 64 + 31 + 5, width: self.view.width, height: self.view.height - 31 - 64 - 5))
         view.backgroundColor = .white
@@ -73,15 +78,17 @@ class FriendsBusinessCardViewController: UIViewController {
         _setupNavigation()
     }
 
+    //设置导航
     private func _setupNavigation() {
         navigationItem.leftBarButtonItem =  navLeftButton
     }
 
+    //导航取消按钮
     func _clickNavLeftButton() {
         dismiss(animated: true, completion: nil)
     }
 
-
+    //分组排序
     fileprivate func _classify(_ users: [JMSGUser], isFrist: Bool = false) {
 
         if users.count > 0 {
@@ -156,6 +163,7 @@ class FriendsBusinessCardViewController: UIViewController {
         }
     }
 
+    //过滤搜索
     fileprivate func filter(_ searchString: String) {
         if searchString.isEmpty || searchString == "" {
             _classify(users)
@@ -167,7 +175,7 @@ class FriendsBusinessCardViewController: UIViewController {
     }
 }
 
-//Mark: -
+//Mark: - 接收消息人员列表tableview的设置
 extension FriendsBusinessCardViewController: UITableViewDelegate, UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -233,6 +241,7 @@ extension FriendsBusinessCardViewController: UITableViewDelegate, UITableViewDat
     }
 }
 
+//弹出框的按钮事件
 extension FriendsBusinessCardViewController: UIAlertViewDelegate {
     func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int) {
         if buttonIndex != 1 {
@@ -253,6 +262,7 @@ extension FriendsBusinessCardViewController: UIAlertViewDelegate {
     }
 }
 
+//搜索操作事件
 extension FriendsBusinessCardViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         filter(searchText)

@@ -2,13 +2,13 @@
 //  JCRemindListViewController.swift
 //  JChat
 //
-//  Created by deng on 2017/6/26.
-//  Copyright © 2017年 HXHG. All rights reserved.
+//  会话中@的会员列表
 //
 
 import UIKit
 
 class JCRemindListViewController: UIViewController {
+    
     
     typealias handleFinish = (_ user: JMSGUser?, _ isAtll: Bool, _ length: Int) -> ()
     
@@ -21,7 +21,9 @@ class JCRemindListViewController: UIViewController {
         _init()
     }
 
+    //取消按钮
     private lazy var cancel = UIButton(frame: CGRect(x: 0, y: 0, width: 50, height: 36))
+    //列表
     fileprivate lazy var tableView: UITableView = {
         var tableView = UITableView(frame: .zero, style: .grouped)
         tableView.delegate = self
@@ -34,6 +36,7 @@ class JCRemindListViewController: UIViewController {
         tableView.frame = CGRect(x: 0, y: 0, width: self.view.width, height: self.view.height)
         return tableView
     }()
+    //搜索区域
     fileprivate lazy var searchView: UISearchBar = {
         let searchView = UISearchBar.default
         searchView.frame = CGRect(x: 0, y: 0, width: self.view.width, height: 31)
@@ -41,12 +44,17 @@ class JCRemindListViewController: UIViewController {
         return searchView
     }()
     
+    //tag标签数组
     fileprivate lazy var tagArray = ["所有成员"]
+    
+    //首字母的数组
     fileprivate lazy var users: [JMSGUser] = []
     fileprivate lazy var keys: [String] = []
     fileprivate lazy var data: Dictionary<String, [JMSGUser]> = Dictionary()
     
+    //默认的组图片
     fileprivate lazy var defaultGroupIcon = UIImage.loadImage("com_icon_group_36")
+    //是否搜索
     fileprivate var isSearching = false
     
     private func _init() {
@@ -59,6 +67,7 @@ class JCRemindListViewController: UIViewController {
         view.addSubview(tableView)
     }
     
+    //设置右上的导航按钮
     private func _setupNavigation() {
         cancel.addTarget(self, action: #selector(_clickNavRightButton), for: .touchUpInside)
         cancel.setTitle("取消", for: .normal)
@@ -67,10 +76,12 @@ class JCRemindListViewController: UIViewController {
         navigationItem.leftBarButtonItem = item
     }
     
+    //右上导航按钮点击事件
     func _clickNavRightButton() {
         dismiss(animated: true, completion: nil)
     }
     
+    //分组和排序
     func _classify(_ users: [JMSGUser]) {
         keys.removeAll()
         data.removeAll()
@@ -96,6 +107,7 @@ class JCRemindListViewController: UIViewController {
         keys = keys.sortedKeys()
     }
     
+    //搜索过滤功能
     fileprivate func filter(_ searchString: String) {
         if searchString.isEmpty || searchString == "" {
             isSearching = false
@@ -110,7 +122,7 @@ class JCRemindListViewController: UIViewController {
     }
 }
 
-//Mark: -
+//Mark: - 设置tableview的数据源
 extension JCRemindListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -192,7 +204,9 @@ extension JCRemindListViewController: UITableViewDelegate, UITableViewDataSource
     }
 }
 
+//搜索功能
 extension JCRemindListViewController: UISearchBarDelegate {
+    //执行搜索
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         filter(searchText)
     }

@@ -2,8 +2,7 @@
 //  FileViewController.swift
 //  JChat
 //
-//  Created by 邓永豪 on 2017/8/28.
-//  Copyright © 2017年 HXHG. All rights reserved.
+//  电子文档显示
 //
 
 import UIKit
@@ -88,7 +87,7 @@ class FileViewController: UIViewController {
     }
 }
 
-//Mark: -
+//Mark: - 设置文件列表tableview的数据源
 extension FileViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -189,6 +188,7 @@ extension FileViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+//文档交互操作
 extension FileViewController: UIDocumentInteractionControllerDelegate {
     func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController {
         return self

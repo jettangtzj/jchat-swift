@@ -828,7 +828,7 @@ extension JCChatViewController: JCMessageDelegate {
     
     //文件消息，下载文件
     func message(message: JCMessageType, fileData data: Data?, fileName: String?, fileType: String?) {
-        if data == nil {
+        if data == nil {//如果数据为空，则进入文件下载
             let vc = JCFileDownloadViewController()
             vc.title = fileName
             let msg = conversation.message(withMessageId: message.msgId)
@@ -917,7 +917,7 @@ extension JCChatViewController: JCMessageDelegate {
     }
 }
 
-//消息界面的监听代理
+//消息界面的事件处理
 extension JCChatViewController: JCChatViewDelegate {
     
     //刷新聊天界面
@@ -942,7 +942,7 @@ extension JCChatViewController: JCChatViewDelegate {
         }
     }
     
-    //
+    //发送名片或转发消息
     func forwardMessage(message: JCMessageType) {
         if let message = conversation.message(withMessageId: message.msgId) {
             let vc = JCForwardViewController()
@@ -954,7 +954,7 @@ extension JCChatViewController: JCChatViewDelegate {
         }
     }
     
-    //
+    //撤回消息
     func withdrawMessage(message: JCMessageType) {
         guard let message = conversation.message(withMessageId: message.msgId) else {
             return
@@ -1078,7 +1078,7 @@ extension JCChatViewController: SAIInputBarDelegate, SAIInputBarDisplayable {
         }
     }
     
-    //设置内容显示大小
+    //设置输入内容大小
     open func inputViewContentSize(_ inputView: UIView) -> CGSize {
         return CGSize(width: view.frame.width, height: 216)
     }
@@ -1086,6 +1086,7 @@ extension JCChatViewController: SAIInputBarDelegate, SAIInputBarDisplayable {
     func inputBar(_ inputBar: SAIInputBar, shouldDeselectFor item: SAIInputItem) -> Bool {
         return true
     }
+    
     open func inputBar(_ inputBar: SAIInputBar, shouldSelectFor item: SAIInputItem) -> Bool {
         if item.identifier == "kb:audio" {
             return true
@@ -1095,6 +1096,8 @@ extension JCChatViewController: SAIInputBarDelegate, SAIInputBarDisplayable {
         }
         return true
     }
+    
+    
     open func inputBar(_ inputBar: SAIInputBar, didSelectFor item: SAIInputItem) {
         inputItem = item
         
@@ -1134,6 +1137,7 @@ extension JCChatViewController: SAIInputBarDelegate, SAIInputBarDisplayable {
             return true
         }
         if string == "@" {
+            //打开@的会员选择
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()) {
                 let vc = JCRemindListViewController()
                 vc.finish = { (user, isAtAll, length) in

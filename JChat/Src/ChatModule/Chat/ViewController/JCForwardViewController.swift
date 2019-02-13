@@ -2,15 +2,16 @@
 //  JCForwardViewController.swift
 //  JChat
 //
-//  Created by deng on 2017/7/17.
-//  Copyright © 2017年 HXHG. All rights reserved.
+//  转发消息界面
 //
 
 import UIKit
 
 class JCForwardViewController: UIViewController {
     
+    //转发的消息
     var message: JMSGMessage?
+    //发送人
     var fromUser: JMSGUser!
 
     override func viewDidLoad() {
@@ -18,8 +19,9 @@ class JCForwardViewController: UIViewController {
         _init()
     }
 
+    //取消按钮
     private lazy var cancelButton = UIButton(frame: CGRect(x: 0, y: 0, width: 36, height: 36))
-    
+    //联系人列表
     fileprivate lazy var contacterView: UITableView = {
         var contacterView = UITableView(frame: .zero, style: .grouped)
         contacterView.delegate = self
@@ -31,17 +33,21 @@ class JCForwardViewController: UIViewController {
         contacterView.frame = CGRect(x: 0, y: 0, width: self.view.width, height: self.view.height)
         return contacterView
     }()
+    //搜索结果显示区域
     let searchResultVC = JCSearchResultViewController()
+    //搜索控件
     private lazy var searchController: JCSearchController = JCSearchController(searchResultsController: JCNavigationController(rootViewController: self.searchResultVC))
+    //搜索区域
     private lazy var searchView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.width, height: 31))
+    //角标数
     fileprivate var badgeCount = 0
     
     fileprivate lazy var tagArray = ["群组"]
+    //首字母分组
     fileprivate lazy var users: [JMSGUser] = []
-    
     fileprivate lazy var keys: [String] = []
     fileprivate lazy var data: Dictionary<String, [JMSGUser]> = Dictionary()
-    
+    //选择接收的会员
     fileprivate var selectUser: JMSGUser!
 
     private func _init() {
@@ -50,7 +56,7 @@ class JCForwardViewController: UIViewController {
         } else {
             self.title = "转发"
         }
-
+        
         searchResultVC.message = message
         searchResultVC.fromUser = fromUser
         searchResultVC.delegate = self
@@ -71,6 +77,7 @@ class JCForwardViewController: UIViewController {
         _getFriends()
     }
     
+    //设置导航左侧的取消按钮
     private func _setupNavigation() {
         cancelButton.addTarget(self, action: #selector(_clickNavleftButton), for: .touchUpInside)
         cancelButton.setTitle("取消", for: .normal)
@@ -79,16 +86,19 @@ class JCForwardViewController: UIViewController {
         navigationItem.leftBarButtonItem = item
     }
     
+    //导航按钮点击事件
     func _clickNavleftButton() {
         dismiss(animated: true, completion: nil)
     }
     
+    //获取会员好友信息，分组排序，并加载至界面
     func _updateUserInfo() {
         let users = self.users
         _classify(users)
         contacterView.reloadData()
     }
     
+    //分组排序
     func _classify(_ users: [JMSGUser]) {
         self.users = users
         keys.removeAll()
@@ -112,6 +122,7 @@ class JCForwardViewController: UIViewController {
         keys = keys.sortedKeys()
     }
     
+    //获取好友
     func _getFriends() {
         JMSGFriendManager.getFriendList { (result, error) in
             if let users = result as? [JMSGUser] {
@@ -123,7 +134,7 @@ class JCForwardViewController: UIViewController {
 
 }
 
-//Mark: -
+//Mark: - 设置tableview数据源
 extension JCForwardViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -205,6 +216,7 @@ extension JCForwardViewController: UITableViewDelegate, UITableViewDataSource {
         
     }
     
+    //发送名片消息
     private func sendBusinessCard() {
         fromUser = fromUser ?? JMSGUser.myInfo()
         JCAlertView.bulid().setTitle("发送给：\(selectUser.displayName())")
@@ -216,6 +228,7 @@ extension JCForwardViewController: UITableViewDelegate, UITableViewDataSource {
             .show()
     }
     
+    //转发消息
     private func forwardMessage(_ message: JMSGMessage) {
         JCAlertView.bulid().setJMessage(message)
             .setTitle("发送给：\(selectUser.displayName())")
@@ -225,10 +238,13 @@ extension JCForwardViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+//搜索显示隐藏操作
 extension JCForwardViewController: UISearchControllerDelegate {
+    //显示搜索，隐藏联系人
     func willPresentSearchController(_ searchController: UISearchController) {
         contacterView.isHidden = true
     }
+    //隐藏搜索，显示联系人
     func willDismissSearchController(_ searchController: UISearchController) {
         contacterView.isHidden = false
         let nav = searchController.searchResultsController as! JCNavigationController
@@ -237,6 +253,7 @@ extension JCForwardViewController: UISearchControllerDelegate {
     }
 }
 
+//弹出提示框操作
 extension JCForwardViewController: UIAlertViewDelegate {
     func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int) {
         if buttonIndex != 1 {

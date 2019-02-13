@@ -2,8 +2,7 @@
 //  UnreadListViewController.swift
 //  JChat
 //
-//  Created by 邓永豪 on 2017/9/14.
-//  Copyright © 2017年 HXHG. All rights reserved.
+//  消息查看情况的列表
 //
 
 import UIKit
@@ -17,7 +16,9 @@ class UnreadListViewController: UIViewController, CustomNavigation {
         _init()
     }
 
+    //未读列表
     fileprivate var unreadList = UnreadListTableView()
+    //已读列表
     fileprivate var readList = UnreadListTableView()
 
     private lazy var tabedSlideView: DLTabedSlideView = {
@@ -87,6 +88,7 @@ extension UnreadListViewController: DLTabedSlideViewDelegate {
 }
 
 
+//设置tableview
 class UnreadListTableView: UITableViewController {
 
     var users: [JMSGUser] = []

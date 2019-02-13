@@ -2,15 +2,16 @@
 //  JCFileDownloadViewController.swift
 //  JChat
 //
-//  Created by deng on 2017/7/24.
-//  Copyright © 2017年 HXHG. All rights reserved.
+//  文件下载界面
 //
 
 import UIKit
 
 class JCFileDownloadViewController: UIViewController {
     
+    //消息
     var message: JMSGMessage!
+    //文件大小
     var fileSize: String?
 
     override func viewDidLoad() {
@@ -18,12 +19,14 @@ class JCFileDownloadViewController: UIViewController {
         _init()
     }
 
+    //图片
     private lazy var _imageView: UIImageView = {
         var _imageView = UIImageView()
         _imageView.image = UIImage.loadImage("com_icon_file_file_75")
         return _imageView
     }()
     
+    //提示标签
     private lazy var _tipsLabel: UILabel = {
         var _tipsLabel = UILabel()
         _tipsLabel.font = UIFont.systemFont(ofSize: 12)
@@ -33,6 +36,7 @@ class JCFileDownloadViewController: UIViewController {
         return _tipsLabel
     }()
     
+    //下载按钮
     private lazy var _downloadButton: UIButton = {
         var _downloadButton = UIButton()
         _downloadButton.setBackgroundImage(UIImage.createImage(color: UIColor(netHex: 0x2ECFCF), size: CGSize(width: 225, height: 40)), for: .normal)
@@ -41,6 +45,7 @@ class JCFileDownloadViewController: UIViewController {
         return _downloadButton
     }()
     
+    //打开按钮
     private lazy var _openButton: UIButton = {
         var _openButton = UIButton()
         _openButton.setBackgroundImage(UIImage.createImage(color: UIColor(netHex: 0x2ECFCF), size: CGSize(width: 225, height: 40)), for: .normal)
@@ -50,6 +55,7 @@ class JCFileDownloadViewController: UIViewController {
         return _openButton
     }()
     
+    //文件名标签
     private lazy var _fileNameLabel: UILabel = {
         var _fileNameLabel = UILabel()
         _fileNameLabel.font = UIFont.systemFont(ofSize: 16)
@@ -59,6 +65,7 @@ class JCFileDownloadViewController: UIViewController {
         return _fileNameLabel
     }()
     
+    //进度条
     private lazy var _progressView: UIProgressView = {
         var _progressView = UIProgressView(frame: .zero)
         _progressView.backgroundColor = UIColor(netHex: 0x72D635)
@@ -66,7 +73,9 @@ class JCFileDownloadViewController: UIViewController {
         return _progressView
     }()
     
+    //文件数据
     private var _fileData: Data!
+    //文档交互
     private lazy var documentInteractionController = UIDocumentInteractionController()
     
     private func _init() {
@@ -80,53 +89,55 @@ class JCFileDownloadViewController: UIViewController {
         view.addSubview(_downloadButton)
         view.addSubview(_openButton)
         
+        //图片的显示约束
         view.addConstraint(_JCLayoutConstraintMake(_imageView, .top, .equal, view, .top, 98 + 64))
         view.addConstraint(_JCLayoutConstraintMake(_imageView, .centerX, .equal, view, .centerX))
         view.addConstraint(_JCLayoutConstraintMake(_imageView, .width, .equal, nil, .notAnAttribute, 75))
         view.addConstraint(_JCLayoutConstraintMake(_imageView, .height, .equal, nil, .notAnAttribute, 75))
-        
+        //文件名的显示约束
         view.addConstraint(_JCLayoutConstraintMake(_fileNameLabel, .top, .equal, _imageView, .bottom, 14))
         view.addConstraint(_JCLayoutConstraintMake(_fileNameLabel, .centerX, .equal, view, .centerX))
         view.addConstraint(_JCLayoutConstraintMake(_fileNameLabel, .width, .equal, nil, .notAnAttribute, 225))
         view.addConstraint(_JCLayoutConstraintMake(_fileNameLabel, .height, .equal, nil, .notAnAttribute, 45))
-        
+        //提示的显示约束
         view.addConstraint(_JCLayoutConstraintMake(_tipsLabel, .top, .equal, _fileNameLabel, .bottom, 14))
         view.addConstraint(_JCLayoutConstraintMake(_tipsLabel, .centerX, .equal, view, .centerX))
         view.addConstraint(_JCLayoutConstraintMake(_tipsLabel, .width, .equal, nil, .notAnAttribute, 225))
         view.addConstraint(_JCLayoutConstraintMake(_tipsLabel, .height, .equal, nil, .notAnAttribute, 7))
-
+        //下载按钮的显示约束
         view.addConstraint(_JCLayoutConstraintMake(_downloadButton, .top, .equal, _tipsLabel, .bottom, 30))
         view.addConstraint(_JCLayoutConstraintMake(_downloadButton, .centerX, .equal, view, .centerX))
         view.addConstraint(_JCLayoutConstraintMake(_downloadButton, .width, .equal, nil, .notAnAttribute, 225))
         view.addConstraint(_JCLayoutConstraintMake(_downloadButton, .height, .equal, nil, .notAnAttribute, 40))
-        
+        //打开按钮的显示约束
         view.addConstraint(_JCLayoutConstraintMake(_openButton, .top, .equal, _tipsLabel, .bottom, 30))
         view.addConstraint(_JCLayoutConstraintMake(_openButton, .centerX, .equal, view, .centerX))
         view.addConstraint(_JCLayoutConstraintMake(_openButton, .width, .equal, nil, .notAnAttribute, 225))
         view.addConstraint(_JCLayoutConstraintMake(_openButton, .height, .equal, nil, .notAnAttribute, 40))
     }
     
+    //打开文件操作
     func _openFile() {
         if let fileType = message.ex.fileType {
             let content = message.content as! JMSGFileContent
             switch fileType.fileFormat() {
-            case .document:
+            case .document://文档类型
                 let vc = JCDocumentViewController()
                 vc.title = self.title
                 vc.fileData = _fileData
                 vc.filePath = content.originMediaLocalPath
                 vc.fileType = fileType
                 navigationController?.pushViewController(vc, animated: true)
-            case .video, .voice:
+            case .video, .voice://音频类型
                 let url = URL(fileURLWithPath: content.originMediaLocalPath ?? "")
                 try! JCVideoManager.playVideo(data: Data(contentsOf: url), fileType, currentViewController: self)
-            case .photo:
+            case .photo://照片类型
                 let browserImageVC = JCImageBrowserViewController()
                 let image = UIImage(contentsOfFile: content.originMediaLocalPath ?? "")
                 browserImageVC.imageArr = [image!]
                 browserImageVC.imgCurrentIndex = 0
                 present(browserImageVC, animated: true) {}
-            default:
+            default://其他类型
                 let url = URL(fileURLWithPath: content.originMediaLocalPath ?? "")
                 documentInteractionController.url = url
                 documentInteractionController.presentOptionsMenu(from: .zero, in: view, animated: true)
@@ -134,6 +145,7 @@ class JCFileDownloadViewController: UIViewController {
         }
     }
     
+    //下载操作
     func _downloadFile() {
         let content = message.content as! JMSGFileContent
         MBProgressHUD_JChat.showMessage(message: "下载中", toView: view)
@@ -152,6 +164,7 @@ class JCFileDownloadViewController: UIViewController {
 
 }
 
+//文档交互操作
 extension JCFileDownloadViewController: UIDocumentInteractionControllerDelegate {
     func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController {
         return self

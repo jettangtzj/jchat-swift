@@ -158,12 +158,12 @@ extension JCSingleSettingViewController: UITableViewDelegate, UITableViewDataSou
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.section == 1 {
             switch indexPath.row {
-            case 0:
+            case 0://聊天文件
                 let vc = FileManagerViewController()
                 let conv = JMSGConversation.singleConversation(withUsername: user.username)
                 vc.conversation  = conv
                 navigationController?.pushViewController(vc, animated: true)
-            case 2:
+            case 2://清空聊天记录
                 let actionSheet = UIActionSheet(title: nil, delegate: self, cancelButtonTitle: "取消", destructiveButtonTitle: nil, otherButtonTitles: "清空聊天记录")
                 actionSheet.tag = 1001
                 actionSheet.show(in: view)

@@ -2,8 +2,7 @@
 //  ScanQRCodeViewController.swift
 //  JChat
 //
-//  Created by 邓永豪 on 2017/8/16.
-//  Copyright © 2017年 HXHG. All rights reserved.
+//  二维码扫描界面
 //
 
 import UIKit
@@ -17,7 +16,7 @@ class ScanQRCodeViewController: UIViewController {
         super.viewDidLoad()
         self.title = "扫一扫"
         view.backgroundColor = .white
-        
+        //是否获得了相机使用的权限
         let authStatus = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
         if(authStatus == .restricted || authStatus == .denied){
             let alertView = UIAlertView(title: "无法访问相机", message: "请在设备的设置-趣阅中允许访问相机。",delegate: self, cancelButtonTitle: "好的", otherButtonTitles: "去设置")
@@ -51,7 +50,9 @@ class ScanQRCodeViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(startQRCAnimate), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
     }
     
+    //image区域
     var qrcLine: UIImageView!
+    //是否停止动画
     var isStopAnimate = false
     
     override func viewWillAppear(_ animated: Bool) {
@@ -80,6 +81,7 @@ class ScanQRCodeViewController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
+    //视频捕捉
     fileprivate lazy var session: AVCaptureSession = {
         var session = AVCaptureSession()
         var device = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
@@ -99,10 +101,12 @@ class ScanQRCodeViewController: UIViewController {
         
         return session
     }()
+    
     fileprivate lazy var previewLayer: AVCaptureVideoPreviewLayer = {
         var previewLayer = AVCaptureVideoPreviewLayer(session: self.session)
         return previewLayer!
     }()
+    
     
     private func _getBackgroundImage() -> UIImage? {
         UIGraphicsBeginImageContext(view.frame.size)
@@ -119,9 +123,9 @@ class ScanQRCodeViewController: UIViewController {
         UIGraphicsEndImageContext()
         return image
     }
-    
+    //是否正在扫描
     var isAnimating = false
-    
+    //开始扫描
     func startQRCAnimate() {
         if isStopAnimate || isAnimating {
             return
@@ -219,6 +223,7 @@ extension ScanQRCodeViewController: AVCaptureMetadataOutputObjectsDelegate {
     }
 }
 
+//弹出框按钮事件
 extension ScanQRCodeViewController: UIAlertViewDelegate {
     func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int) {
         if buttonIndex == 1 {

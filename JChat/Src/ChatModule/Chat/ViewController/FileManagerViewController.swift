@@ -2,8 +2,7 @@
 //  FileManagerViewController.swift
 //  JChat
 //
-//  Created by 邓永豪 on 2017/8/28.
-//  Copyright © 2017年 HXHG. All rights reserved.
+//  聊天文件列表显示
 //
 
 import UIKit
@@ -15,6 +14,7 @@ protocol FileManagerDelegate {
 
 class FileManagerViewController: UIViewController {
     
+    //聊天会话
     var conversation: JMSGConversation!
 
     override func viewDidLoad() {
@@ -26,12 +26,18 @@ class FileManagerViewController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
+    //图片查看
     fileprivate let imageFileViewController = ImageFileViewController()
+    //doc文档查看
     fileprivate let docFileViewController =  FileViewController()
+    //视频查看
     fileprivate let videoFileViewController =  FileViewController()
+    //音频查看
     fileprivate let musicFileViewController =  FileViewController()
+    //其他文件查看
     fileprivate let otherFileViewController =  FileViewController()
     
+    //全部聊天文件数组
     private var allMessage: [JMSGMessage] = []
     private var imageMessages: [JMSGMessage] = []
     private var docMessages: [JMSGMessage] = []
@@ -40,9 +46,11 @@ class FileManagerViewController: UIViewController {
     private var otherFileMessages: [JMSGMessage] = []
     private var selectMessage: [JMSGMessage] = []
 
+    //距顶
     private var topOffset: CGFloat {
         if isIPhoneX {
-            return 88
+//            return 88
+            return 112
         }
         return 64
     }
@@ -59,8 +67,11 @@ class FileManagerViewController: UIViewController {
         return tabedSlideView
     }()
     
+    //导航右按钮 选择按钮
     private lazy var navRightButton: UIBarButtonItem = UIBarButtonItem(title: "选择", style: .plain, target: self, action: #selector(_clickNavRightButton))
+    //是否文件可编辑删除状态
     fileprivate var isEditMode = false
+    //bar区域
     private lazy var barView: UIView = {
         var barView = UIView(frame: CGRect(x: 0, y: self.view.height - 45, width: self.view.width, height: 45))
         let line = UILabel(frame: CGRect(x: 0, y: 0, width: barView.width, height: 0.5))
@@ -70,6 +81,7 @@ class FileManagerViewController: UIViewController {
         barView.isHidden = true
         return barView
     }()
+    //文件删除按钮
     private lazy var delButton: UIButton = {
         var delButton = UIButton()
         delButton.setTitle("删除", for: .normal)
@@ -80,7 +92,7 @@ class FileManagerViewController: UIViewController {
         delButton.backgroundColor = UIColor(netHex: 0xEB424D)
         return delButton
     }()
-    
+    //选择文件数量显示标签
     private lazy var selectCountLabel: UILabel = {
         var label = UILabel(frame: CGRect(x: 17.5, y: 11.5, width: 120, height: 22))
         label.textAlignment = .left
@@ -110,6 +122,7 @@ class FileManagerViewController: UIViewController {
         delButton.frame = CGRect(x: barView.width - 72 - 16.6, y: 8.5, width: 72, height: 29)
         _setupNavigation()
         
+        //获取全部聊天文件
         conversation.allMessages({ (result, error) in
             if let message = result as? [JMSGMessage] {
                 self.allMessage = message
@@ -120,6 +133,7 @@ class FileManagerViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(_didSelectFileMessage), name: NSNotification.Name(rawValue: "kDidSelectFileMessage"), object: nil)
     }
     
+    //已选择文件
     func _didSelectFileMessage() {
         selectMessage.removeAll()
         selectMessage.append(contentsOf: imageFileViewController.selectMessages)
@@ -136,6 +150,7 @@ class FileManagerViewController: UIViewController {
         }
     }
     
+    //分组和排序文件
     func classifyMessage(_ messages: [JMSGMessage]) {
         docMessages.removeAll()
         videoMessages.removeAll()
@@ -168,6 +183,7 @@ class FileManagerViewController: UIViewController {
         reloadAllFileViewController()
     }
     
+    //重新加载文件
     func reloadAllFileViewController() {
         imageFileViewController.messages = imageMessages
         docFileViewController.messages = docMessages
@@ -182,10 +198,12 @@ class FileManagerViewController: UIViewController {
         otherFileViewController.reloadDate()
     }
     
+    //设置导航
     private func _setupNavigation() {
         self.navigationItem.rightBarButtonItem =  navRightButton
     }
     
+    //导航按钮事件
     func _clickNavRightButton() {
         if isEditMode {
             navRightButton.title = "选择"
@@ -205,6 +223,7 @@ class FileManagerViewController: UIViewController {
         selectMessage = []
     }
     
+    //删除文件操作
     func _delFile() {
         if selectMessage.count <= 0 {
             return
@@ -214,13 +233,16 @@ class FileManagerViewController: UIViewController {
             allMessage = allMessage.filter({ (m) -> Bool in
                 message.msgId != m.msgId
             })
+            //会话中删除该消息
             conversation.deleteMessage(withMessageId: message.msgId)
         }
+        //重新分组排序
         classifyMessage(allMessage)
         _clickNavRightButton()
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: kReloadAllMessage), object: nil)
     }
 }
+
 
 extension FileManagerViewController: DLTabedSlideViewDelegate {
     func numberOfTabs(in sender: DLTabedSlideView!) -> Int {

@@ -2,8 +2,7 @@
 //  JCRemoveMemberViewController.swift
 //  JChat
 //
-//  Created by deng on 2017/5/16.
-//  Copyright © 2017年 HXHG. All rights reserved.
+//  群聊会员列表中删除成员
 //
 
 import UIKit
@@ -11,26 +10,34 @@ import JMessage
 
 class JCRemoveMemberViewController: UIViewController {
     
+    //群组信息
     var group: JMSGGroup!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         _init()
     }
-
+    
+    //操作区域
     fileprivate lazy var toolView: UIView = UIView(frame: CGRect(x: 0, y: 64, width: self.view.width, height: 55))
+    //会员列表区域
     fileprivate var tableView: UITableView = UITableView(frame: .zero, style: .grouped)
+    //搜索结果区域
     fileprivate var collectionView: UICollectionView!
+    //搜索框控件
     fileprivate lazy var searchView: UISearchBar = UISearchBar.default
-
+    //删除按钮
     fileprivate lazy var delButton = UIButton(frame: CGRect(x: 0, y: 0, width: 120, height: 28))
     
+    //会员数组
     fileprivate lazy var users: [JMSGUser] = []
+    //会员姓名首字母数组
     fileprivate lazy var keys: [String] = []
+    //会员姓名首字母对应的数组
     fileprivate lazy var data: Dictionary<String, [JMSGUser]> = Dictionary()
-    
+    //已过滤的会员数组
     fileprivate lazy var filteredUsersArray: [JMSGUser] = []
-    
+    //已选择的会员数组
     fileprivate lazy var selectUsers: [JMSGUser] = []
     
     private func _init() {
@@ -77,6 +84,7 @@ class JCRemoveMemberViewController: UIViewController {
         _setupNavigation()
     }
     
+    //删除右上导航按钮
     private func _setupNavigation() {
         delButton.addTarget(self, action: #selector(_clickNavRightButton(_:)), for: .touchUpInside)
         delButton.setTitle("删除", for: .normal)
@@ -87,6 +95,7 @@ class JCRemoveMemberViewController: UIViewController {
         navigationController?.navigationItem.rightBarButtonItem?.isEnabled = false
     }
     
+    //数组整理和排序
     private func _classify(_ users: [JMSGUser]) {
         
         filteredUsersArray = users
@@ -114,6 +123,7 @@ class JCRemoveMemberViewController: UIViewController {
         collectionView.reloadData()
     }
     
+    //加载搜索结果数据
     fileprivate func _reloadCollectionView() {
         if selectUsers.count > 0 {
             delButton.alpha = 1.0
@@ -151,6 +161,7 @@ class JCRemoveMemberViewController: UIViewController {
         collectionView.reloadData()
     }
     
+    //右上导航按钮点击事件 删除会员
     func _clickNavRightButton(_ sender: UIButton) {
         var userNames: [String] = []
         for item in selectUsers {
@@ -168,6 +179,7 @@ class JCRemoveMemberViewController: UIViewController {
         }
     }
     
+    //搜索过滤
     fileprivate func filter(_ searchString: String) {
         if searchString.isEmpty || searchString == "" {
             _classify(users)
@@ -260,6 +272,7 @@ extension JCRemoveMemberViewController: UITableViewDelegate, UITableViewDataSour
     }
 }
 
+//搜索结果数据源设置
 extension JCRemoveMemberViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -294,6 +307,7 @@ extension JCRemoveMemberViewController: UICollectionViewDelegate, UICollectionVi
     }
 }
 
+//搜索操作
 extension JCRemoveMemberViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         filter(searchText)
