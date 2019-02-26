@@ -28,7 +28,9 @@ class JCBusinessCardContentView: UIView, JCMessageContentViewType {
         _userName = content.userName
         _appKey = content.appKey
         
-        userNameLabel.text = "用户名：\(String(describing: _userName!))"
+        //newchange
+        userNameLabel.text = ""
+        //userNameLabel.text = "用户名：\(String(describing: _userName!))"
         
         if let userName = _userName {
             JMSGUser.userInfoArray(withUsernameArray: [userName], completionHandler: { (result, error) in
