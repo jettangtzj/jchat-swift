@@ -388,9 +388,16 @@ extension JCGroupSettingViewController: JCGroupSettingCellDelegate {
     
     //点击行添加按钮 添加成员
     func clickAddCell(cell: JCGroupSettingCell) {
-        let vc = JCUpdateMemberViewController()
-        vc.group = group
-        self.navigationController?.pushViewController(vc, animated: true)
+        //newchange
+        if isMyGroup {//是群主才能添加群成员
+            let vc = JCUpdateMemberViewController()
+            vc.group = group
+            self.navigationController?.pushViewController(vc, animated: true)
+        }else {//非群主
+            MBProgressHUD_JChat.show(text: "您不能添加群成员", view: self.view)
+            return
+        }
+        
     }
     
     //点击行删除按钮 成员删除 必须是自己的群才有该按钮
