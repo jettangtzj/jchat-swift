@@ -2,8 +2,8 @@
 //  JCFriendSettingViewController.swift
 //  JChat
 //
-//  Created by deng on 2017/5/10.
-//  Copyright © 2017年 HXHG. All rights reserved.
+//  个人详情 右上按钮 好友设置界面
+//  备注名 发送名片 加入黑名单
 //
 
 import UIKit
@@ -141,21 +141,22 @@ extension JCFriendSettingViewController: UITableViewDataSource, UITableViewDeleg
         }
     }
     
+    //列表中的选择点击
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
             switch indexPath.row {
-            case 0:
-                if user.isFriend {
+            case 0://备注名
+                if user.isFriend {//备注名
                     let vc = JCNoteNameViewController()
                     vc.user = user
                     navigationController?.pushViewController(vc, animated: true)
-                } else {
+                } else {//个人名片
                     let vc = JCForwardViewController()
                     vc.fromUser = user
                     let nav = JCNavigationController(rootViewController: vc)
                     present(nav, animated: true)
                 }
-            case 1:
+            case 1://个人名片
                 if user.isFriend {
                     let vc = JCForwardViewController()
                     vc.fromUser = user
