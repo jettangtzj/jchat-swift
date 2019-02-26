@@ -2,8 +2,7 @@
 //  JCBusinessCardContentView.swift
 //  JChat
 //
-//  Created by 邓永豪 on 2017/8/31.
-//  Copyright © 2017年 HXHG. All rights reserved.
+//  个人名片显示布局
 //
 
 import UIKit

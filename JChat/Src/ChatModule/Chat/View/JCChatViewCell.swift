@@ -2,7 +2,7 @@
 //  JCChatViewCell.swift
 //  JChat
 //
-//  Created by deng on 2017/2/28.
+//  聊天消息组件布局
 //  Copyright © 2017年 HXHG. All rights reserved.
 //
 
