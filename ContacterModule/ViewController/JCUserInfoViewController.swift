@@ -193,7 +193,9 @@ extension JCUserInfoViewController: UITableViewDataSource, UITableViewDelegate {
     
 }
 
+//按钮事件
 extension JCUserInfoViewController: JCButtonCellDelegate {
+    //好友发送消息
     func buttonCell(clickButton button: UIButton) {
         if isOnAddFriend {
             let vc = JCAddFriendViewController()
@@ -220,13 +222,18 @@ extension JCUserInfoViewController: JCButtonCellDelegate {
     }
 }
 
+//两个按钮事件
 extension JCUserInfoViewController: JCDoubleButtonCellDelegate {
+    //添加好友
     func doubleButtonCell(clickLeftButton button: UIButton) {
+        //去发送加好友验证消息
         let vc = JCAddFriendViewController()
         vc.user = user
         navigationController?.pushViewController(vc, animated: true)
     }
+    //发送非好友消息
     func doubleButtonCell(clickRightButton button: UIButton) {
+        //非好友发送消息
         JMSGConversation.createSingleConversation(withUsername: (user?.username)!, appKey: (user?.appKey)!) { (result, error) in
             if error == nil {
                 let conv = result as! JMSGConversation
