@@ -151,17 +151,21 @@ extension JCFriendSettingViewController: UITableViewDataSource, UITableViewDeleg
                     vc.user = user
                     navigationController?.pushViewController(vc, animated: true)
                 } else {//个人名片
-                    let vc = JCForwardViewController()
-                    vc.fromUser = user
-                    let nav = JCNavigationController(rootViewController: vc)
-                    present(nav, animated: true)
+                    //newchange
+                    MBProgressHUD_JChat.show(text: "您不能发送个人名片", view: self.view)
+//                    let vc = JCForwardViewController()
+//                    vc.fromUser = user
+//                    let nav = JCNavigationController(rootViewController: vc)
+//                    present(nav, animated: true)
                 }
             case 1://个人名片
                 if user.isFriend {
-                    let vc = JCForwardViewController()
-                    vc.fromUser = user
-                    let nav = JCNavigationController(rootViewController: vc)
-                    present(nav, animated: true)
+                    //newchange
+                    MBProgressHUD_JChat.show(text: "您不能发送个人名片", view: self.view)
+//                    let vc = JCForwardViewController()
+//                    vc.fromUser = user
+//                    let nav = JCNavigationController(rootViewController: vc)
+//                    present(nav, animated: true)
                 }
             default:
                 break
