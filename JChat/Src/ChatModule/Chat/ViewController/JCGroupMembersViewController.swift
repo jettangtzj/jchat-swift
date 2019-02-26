@@ -121,6 +121,7 @@ extension JCGroupMembersViewController: UICollectionViewDelegate, UICollectionVi
         return header
     }
     
+    //进入个人信息查看页面
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let user = filteredUsersArray[indexPath.row]
         let vc = JCUserInfoViewController()

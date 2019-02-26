@@ -709,6 +709,8 @@ extension JCChatViewController: SAIToolboxInputViewDataSource, SAIToolboxInputVi
         vc.pickerDelegate = self
         present(vc, animated: true)
     }
+    
+    //聊天工具箱点击
     open func toolbox(_ toolbox: SAIToolboxInputView, didSelectFor item: SAIToolboxItem) {
         toolbar.resignFirstResponder()
         switch item.identifier {

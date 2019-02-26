@@ -2,7 +2,7 @@
 //  JCGroupSettingViewController.swift
 //  JChat
 //
-//  群组信息界面
+//  群组信息设置界面
 //
 
 import UIKit

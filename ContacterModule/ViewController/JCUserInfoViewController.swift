@@ -2,8 +2,7 @@
 //  JCUserInfoViewController.swift
 //  JChat
 //
-//  Created by deng on 2017/3/22.
-//  Copyright © 2017年 HXHG. All rights reserved.
+//  个人信息查看界面
 //
 
 import UIKit
@@ -48,6 +47,7 @@ class JCUserInfoViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(_updateUserInfo), name: NSNotification.Name(rawValue: kUpdateUserInfo), object: nil)
     }
     
+    //右上的导航按钮
     private func _setupNavigation() {
         moreButton.addTarget(self, action: #selector(_clickNavRightButton), for: .touchUpInside)
         moreButton.setImage(UIImage.loadImage("com_icon_more"), for: .normal)
