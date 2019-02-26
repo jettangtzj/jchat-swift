@@ -59,6 +59,7 @@ class JCUserInfoViewController: UIViewController {
         tableview.reloadData()
     }
     
+    //右上导航按钮点击
     func _clickNavRightButton() {
         let vc = JCFriendSettingViewController()
         vc.user = self.user
@@ -157,7 +158,13 @@ extension JCUserInfoViewController: UITableViewDataSource, UITableViewDelegate {
                 cell.icon = UIImage.loadImage("com_icon_nickname")
             case 2:
                 cell.title = "用户名"
-                cell.detail = user.username
+                //newchange
+                if user.isFriend {
+                    cell.detail = user.username
+                }else{
+                    cell.detail = ""
+                }
+                //
                 cell.icon = UIImage.loadImage("com_icon_username")
             case 3:
                 cell.title = "性别"
