@@ -744,12 +744,17 @@ extension JCChatViewController: SAIToolboxInputViewDataSource, SAIToolboxInputVi
             }
             navigationController?.pushViewController(vc, animated: true)
         case "page:businessCard"://个人名片
-            let vc = FriendsBusinessCardViewController()
-            vc.conversation = conversation
-            let nav = JCNavigationController(rootViewController: vc)
-            present(nav, animated: true, completion: {
-                self.toolbar.isHidden = true
-            })
+            //newchange
+            if isGroup {//如果是群聊，屏蔽个人名片功能
+                MBProgressHUD_JChat.show(text: "您不能发送个人名片", view: view, 2.0)
+            }else{//单聊可以发送个人名片
+                let vc = FriendsBusinessCardViewController()
+                vc.conversation = conversation
+                let nav = JCNavigationController(rootViewController: vc)
+                present(nav, animated: true, completion: {
+                    self.toolbar.isHidden = true
+                })
+            }
         default:
             break
         }
