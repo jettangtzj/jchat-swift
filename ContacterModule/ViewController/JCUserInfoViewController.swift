@@ -226,22 +226,28 @@ extension JCUserInfoViewController: JCButtonCellDelegate {
 extension JCUserInfoViewController: JCDoubleButtonCellDelegate {
     //添加好友
     func doubleButtonCell(clickLeftButton button: UIButton) {
+        //newchange
+        MBProgressHUD_JChat.show(text: "您不能添加好友", view: self.view)
+        return
         //去发送加好友验证消息
-        let vc = JCAddFriendViewController()
-        vc.user = user
-        navigationController?.pushViewController(vc, animated: true)
+//        let vc = JCAddFriendViewController()
+//        vc.user = user
+//        navigationController?.pushViewController(vc, animated: true)
     }
     //发送非好友消息
     func doubleButtonCell(clickRightButton button: UIButton) {
+        //newchange
+        MBProgressHUD_JChat.show(text: "您不能发送消息", view: self.view)
+        return
         //非好友发送消息
-        JMSGConversation.createSingleConversation(withUsername: (user?.username)!, appKey: (user?.appKey)!) { (result, error) in
-            if error == nil {
-                let conv = result as! JMSGConversation
-                let vc = JCChatViewController(conversation: conv)
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: kUpdateConversation), object: nil, userInfo: nil)
-                self.navigationController?.pushViewController(vc, animated: true)
-            }
-        }
+//        JMSGConversation.createSingleConversation(withUsername: (user?.username)!, appKey: (user?.appKey)!) { (result, error) in
+//            if error == nil {
+//                let conv = result as! JMSGConversation
+//                let vc = JCChatViewController(conversation: conv)
+//                NotificationCenter.default.post(name: NSNotification.Name(rawValue: kUpdateConversation), object: nil, userInfo: nil)
+//                self.navigationController?.pushViewController(vc, animated: true)
+//            }
+//        }
     }
 }
 
