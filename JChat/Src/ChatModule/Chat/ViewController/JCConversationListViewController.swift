@@ -65,7 +65,10 @@ class JCConversationListViewController: UIViewController {
     fileprivate var showNetworkTips = false
     //暂无会话的显示区域
     fileprivate lazy var emptyView: UIView = {
-        let view = UIView(frame: CGRect(x: 0, y: 64 + 36, width: self.view.width, height: self.view.height - 64 - 36))
+        var view = UIView(frame: CGRect(x: 0, y: 64 + 36, width: self.view.width, height: self.view.height - 64 - 36))
+        if isIPhoneX {
+            view = UIView(frame: CGRect(x: 0, y: 64 + 36 + 20, width: self.view.width, height: self.view.height - 64 - 36 - 20))
+        }
         view.isHidden = true
         view.backgroundColor = .white
         let tips = UILabel()
@@ -395,6 +398,9 @@ extension JCConversationListViewController: UISearchControllerDelegate {
     func willDismissSearchController(_ searchController: UISearchController) {
         UIView.animate(withDuration: 0.35) {
             self.emptyView.frame = CGRect(x: 0, y: 64 + 36, width: self.view.width, height: self.view.height - 64 - 36)
+            if isIPhoneX {
+                self.emptyView.frame = CGRect(x: 0, y: 64 + 36 + 20, width: self.view.width, height: self.view.height - 64 - 36 - 20)
+            }
         }
         tableview.isHidden = false
         if datas.count == 0 {

@@ -2,8 +2,7 @@
 //  JCSignatureViewController.swift
 //  JChat
 //
-//  Created by deng on 2017/3/29.
-//  Copyright © 2017年 HXHG. All rights reserved.
+//  个性签名显示
 //
 
 import UIKit
