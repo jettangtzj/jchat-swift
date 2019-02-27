@@ -1222,7 +1222,7 @@
 				TargetAttributes = {
 					B43BA3731E8A2F0000565DB3 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 5HXJWDD9P4;
+						DevelopmentTeam = 44GMGS5A74;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
@@ -1652,7 +1652,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = JChat/JChat.entitlements;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 5HXJWDD9P4;
+				DEVELOPMENT_TEAM = 44GMGS5A74;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1672,7 +1672,7 @@
 					"-ObjC",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -D READ_VERSION";
-				PRODUCT_BUNDLE_IDENTIFIER = com.jettang.chat.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jixin.chat.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/JChat/JChat-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
@@ -1689,7 +1689,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = JChat/JChat.entitlements;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 5HXJWDD9P4;
+				DEVELOPMENT_TEAM = 44GMGS5A74;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1709,7 +1709,7 @@
 					"-ObjC",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -D READ_VERSION";
-				PRODUCT_BUNDLE_IDENTIFIER = com.jettang.chat.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jixin.chat.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/JChat/JChat-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;

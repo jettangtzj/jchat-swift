@@ -13,9 +13,9 @@ import JMessage
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    let JMAPPKEY = "428aa2002634188a1bb35ec4"
+    let JMAPPKEY = "7ff5bb7f1db222416176a47a"
     // 百度地图 SDK AppKey，请自行申请你对应的 AppKey
-    let BMAPPKEY = "AtzeB0TuQzZOF2ibbiHs6QPlsa1egs7Y"
+    let BMAPPKEY = "yDRGI5wvCKFjb0eUo3lLhvrA9iCGQg9S"
     
     var _mapManager: BMKMapManager?
     
