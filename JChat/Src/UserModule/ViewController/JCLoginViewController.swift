@@ -40,7 +40,7 @@ class JCLoginViewController: UIViewController {
         let title = UILabel(frame: CGRect(x: self.view.centerX - 10, y: 20, width: 200, height: 44))
         title.font = UIFont.systemFont(ofSize: 18)
         title.textColor = .white
-        title.text = "抖M"
+        title.text = "吉信"
         view.addSubview(title)
         
         var rightButton = UIButton(frame: CGRect(x: view.width - 50 - 15, y: 20 + 7, width: 50, height: 30))

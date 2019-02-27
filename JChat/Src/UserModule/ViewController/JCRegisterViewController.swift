@@ -30,7 +30,7 @@ class JCRegisterViewController: UIViewController {
         let title = UILabel(frame: CGRect(x: self.view.centerX - 10, y: 20, width: 200, height: 44))
         title.font = UIFont.systemFont(ofSize: 18)
         title.textColor = .white
-        title.text = "抖M"
+        title.text = "吉信"
         view.addSubview(title)
         
         var rightButton = UIButton(frame: CGRect(x: view.width - 50 - 15, y: 20 + 7, width: 50, height: 30))
@@ -137,7 +137,7 @@ class JCRegisterViewController: UIViewController {
     
     //MARK: - private mothed
     private func _init() {
-        self.title = "抖M"
+        self.title = "吉信"
         view.backgroundColor = .white
         automaticallyAdjustsScrollViewInsets = false
         
