@@ -105,11 +105,12 @@ extension JCUserInfoViewController: UITableViewDataSource, UITableViewDelegate {
         if indexPath.section == 0 && indexPath.row == 0 {
             return tableView.dequeueReusableCell(withIdentifier: "JCUserAvatorCell", for: indexPath)
         }
-        if indexPath.section == 1  {
-            if user.isFriend || isOnAddFriend {
+        if indexPath.section == 1  {//按钮的样式
+            if user.isFriend || isOnAddFriend {//如果双方是好友或者来源是添加好友操作
                 return tableView.dequeueReusableCell(withIdentifier: "JCButtonCell", for: indexPath)
-            } else {
-                return tableView.dequeueReusableCell(withIdentifier: "JCDoubleButtonCell", for: indexPath)
+            } else {//其他情况不显示按钮
+                //newchange
+//                return tableView.dequeueReusableCell(withIdentifier: "JCDoubleButtonCell", for: indexPath)
             }
         }
         return tableView.dequeueReusableCell(withIdentifier: "JCUserInfoCell", for: indexPath)
@@ -131,22 +132,40 @@ extension JCUserInfoViewController: UITableViewDataSource, UITableViewDelegate {
         }
         
         if indexPath.section == 1 {
-            if user.isFriend || isOnAddFriend {//如果双方是好友或者是添加好友搜索
+            //newchange
+            if user.isFriend {//如果双方是好友
                 guard let cell = cell as? JCButtonCell else {
                     return
                 }
                 cell.delegate = self
-                if isOnAddFriend {//是添加好友搜索
-                    cell.buttonTitle = "添加好友"
-                } else {//其他搜索
-                    cell.buttonTitle = "发送消息"
-                }
-            } else {//非好友、发起聊天搜索来源
-                guard let cell = cell as? JCDoubleButtonCell else {
+                cell.buttonTitle = "发送消息"
+            }else if isOnAddFriend {//如果是好友添加
+                guard let cell = cell as? JCButtonCell else {
                     return
                 }
                 cell.delegate = self
+                cell.buttonTitle = "添加好友"
+            }else{//其他情况不显示按钮
+                
             }
+            
+//            if user.isFriend || isOnAddFriend {//如果双方是好友或者是添加好友搜索
+//                guard let cell = cell as? JCButtonCell else {
+//                    return
+//                }
+//                cell.delegate = self
+//                if isOnAddFriend {//是添加好友搜索
+//                    cell.buttonTitle = "添加好友"
+//                } else {//其他搜索
+//                    cell.buttonTitle = "发送消息"
+//                }
+//            } else {//非好友、发起聊天搜索来源
+//                //newchange
+////                guard let cell = cell as? JCDoubleButtonCell else {
+////                    return
+////                }
+////                cell.delegate = self
+//            }
         }
         
         if indexPath.section == 0 {
@@ -196,16 +215,18 @@ extension JCUserInfoViewController: UITableViewDataSource, UITableViewDelegate {
     
 }
 
-//按钮事件
+//单一样式按钮事件
 extension JCUserInfoViewController: JCButtonCellDelegate {
-    //好友发送消息
+    //按钮点击事件处理
     func buttonCell(clickButton button: UIButton) {
+        //如果是添加好友，进入添加好友验证发送
         if isOnAddFriend {
             let vc = JCAddFriendViewController()
             vc.user = user
             navigationController?.pushViewController(vc, animated: true)
             return
         }
+        //如果在会话中，进入会话，发送消息
         if isOnConversation {
             for vc in (navigationController?.viewControllers)! {
                 if vc is JCChatViewController {
@@ -214,6 +235,7 @@ extension JCUserInfoViewController: JCButtonCellDelegate {
             }
             return
         }
+        //发送消息，创建会话
         JMSGConversation.createSingleConversation(withUsername: (user?.username)!, appKey: (user?.appKey)!) { (result, error) in
             if error == nil {
                 let conv = result as! JMSGConversation
@@ -225,7 +247,7 @@ extension JCUserInfoViewController: JCButtonCellDelegate {
     }
 }
 
-//两个按钮事件
+//双按钮样式处理事件
 extension JCUserInfoViewController: JCDoubleButtonCellDelegate {
     //添加好友
     func doubleButtonCell(clickLeftButton button: UIButton) {
