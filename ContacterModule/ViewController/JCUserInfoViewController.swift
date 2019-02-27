@@ -230,12 +230,14 @@ extension JCUserInfoViewController: JCDoubleButtonCellDelegate {
     //添加好友
     func doubleButtonCell(clickLeftButton button: UIButton) {
         //newchange
-        MBProgressHUD_JChat.show(text: "您不能添加好友", view: self.view)
-        return
+        if isOnAddFriend {
+            MBProgressHUD_JChat.show(text: "您不能添加好友", view: self.view)
+            return
+        }
         //去发送加好友验证消息
-//        let vc = JCAddFriendViewController()
-//        vc.user = user
-//        navigationController?.pushViewController(vc, animated: true)
+        let vc = JCAddFriendViewController()
+        vc.user = user
+        navigationController?.pushViewController(vc, animated: true)
     }
     //发送非好友消息
     func doubleButtonCell(clickRightButton button: UIButton) {
