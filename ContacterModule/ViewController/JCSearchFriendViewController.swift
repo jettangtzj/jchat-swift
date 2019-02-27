@@ -2,8 +2,7 @@
 //  JCSearchFriendViewController.swift
 //  JChat
 //
-//  Created by deng on 2017/4/27.
-//  Copyright © 2017年 HXHG. All rights reserved.
+//  发起单聊 账号搜索好友
 //
 
 import UIKit
@@ -11,6 +10,7 @@ import JMessage
 
 class JCSearchFriendViewController: UIViewController {
     
+    //是否搜索用户状态
     var isSearchUser: Bool = false
 
     override func viewDidLoad() {
@@ -154,8 +154,9 @@ class JCSearchFriendViewController: UIViewController {
         }
     }
     
+    //点击搜索出来的用户事件，进入查看用户信息界面
     func _tapHandler(sender:UITapGestureRecognizer) {
-        if (user?.isEqual(to: JMSGUser.myInfo()))! {
+        if (user?.isEqual(to: JMSGUser.myInfo()))! {//如果是本人
             searchController.isActive = false
             navigationController?.pushViewController(JCMyInfoViewController(), animated: true)
             return
@@ -169,6 +170,7 @@ class JCSearchFriendViewController: UIViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
+    //添加好友
     func _addFriend() {
         let vc = JCAddFriendViewController()
         vc.user = self.user!

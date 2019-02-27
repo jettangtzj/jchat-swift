@@ -115,8 +115,11 @@ extension JCUserInfoViewController: UITableViewDataSource, UITableViewDelegate {
         return tableView.dequeueReusableCell(withIdentifier: "JCUserInfoCell", for: indexPath)
     }
     
+    
+    //设置列表显示
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
+        //没有选中样式
         cell.selectionStyle = .none
         
         if indexPath.section == 0 && indexPath.row == 0 {
