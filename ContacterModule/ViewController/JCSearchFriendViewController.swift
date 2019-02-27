@@ -10,7 +10,7 @@ import JMessage
 
 class JCSearchFriendViewController: UIViewController {
     
-    //是否搜索用户状态
+    //搜索来源是发起单聊搜索
     var isSearchUser: Bool = false
 
     override func viewDidLoad() {
@@ -163,7 +163,7 @@ class JCSearchFriendViewController: UIViewController {
         }
         let vc = JCUserInfoViewController()
         vc.user = user
-        if !isSearchUser && !(user?.isFriend)! {
+        if !isSearchUser && !(user?.isFriend)! {//如果不是会话搜索、也不是好友身份，即是添加好友搜索
             vc.isOnAddFriend = true
         }
         searchController.isActive = false

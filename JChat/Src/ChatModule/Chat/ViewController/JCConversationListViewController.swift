@@ -319,27 +319,30 @@ extension JCConversationListViewController: UITableViewDelegate, UITableViewData
     
 }
 
-//弹出界面操作
+//右上弹出界面操作
+//发起单聊、发起群聊、添加朋友、扫一扫
 extension JCConversationListViewController: MorePopupViewDelegate {
+    //发起群聊
     func popupView(view: MorePopupView, addGroup addButton: UIButton) {
         dismissPopupView()
         let vc = JCUpdateMemberViewController()
         vc.isAddMember = false
         navigationController?.pushViewController(vc, animated: true)
     }
-    
+    //添加好友
     func popupView(view: MorePopupView, addFriend addButton: UIButton) {
         dismissPopupView()
         navigationController?.pushViewController(JCSearchFriendViewController(), animated: true)
     }
-    
+    //发起单聊
     func popupView(view: MorePopupView, addSingle addButton: UIButton) {
         dismissPopupView()
         let vc = JCSearchFriendViewController()
+        //来源于会话发起搜索
         vc.isSearchUser = true
         navigationController?.pushViewController(vc, animated: true)
     }
-    
+    //扫一扫
     func popupView(view: MorePopupView, scanQRCode addButton: UIButton) {
         dismissPopupView()
         let vc = ScanQRCodeViewController()
