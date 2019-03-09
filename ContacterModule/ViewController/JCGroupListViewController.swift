@@ -2,8 +2,7 @@
 //  JCGroupListViewController.swift
 //  JChat
 //
-//  Created by deng on 2017/3/16.
-//  Copyright © 2017年 HXHG. All rights reserved.
+//  通讯录-群组列表
 //
 
 import UIKit
