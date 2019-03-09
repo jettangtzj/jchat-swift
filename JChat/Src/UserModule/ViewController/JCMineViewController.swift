@@ -62,9 +62,9 @@ class JCMineViewController: UIViewController {
 extension JCMineViewController: JMessageDelegate {
     func onReceive(_ event: JMSGNotificationEvent!) {
         switch event.eventType {
-        case .currentUserInfoChange:
-            updateCurrentUserAvator()
-            tableview.reloadData()
+//        case .currentUserInfoChange:
+//            updateCurrentUserAvator()
+//            tableview.reloadData()
         default:
             break
         }

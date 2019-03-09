@@ -53,6 +53,15 @@ class JCMineInfoCell: JCTableViewCell {
             switchButton.isOn = newValue
         }
     }
+    
+    var switchButtonTag : Int {
+        get {
+            return switchButton.tag
+        }
+        set {
+            switchButton.tag = newValue
+        }
+    }
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -77,12 +86,14 @@ class JCMineInfoCell: JCTableViewCell {
         titleLabel.layer.masksToBounds = true
         return titleLabel
     }()
+    
     private lazy var switchButton: UISwitch =  {
         let switchButton = UISwitch()
         switchButton.isHidden = true
         switchButton.addTarget(self, action: #selector(clickSwitch(_:)), for: .valueChanged)
         return switchButton
     }()
+    
     private lazy var detailLabel: UILabel = {
         let detailLabel = UILabel()
         detailLabel.textAlignment = .right

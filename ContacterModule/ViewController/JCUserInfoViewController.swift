@@ -2,7 +2,7 @@
 //  JCUserInfoViewController.swift
 //  JChat
 //
-//  个人信息查看界面
+//  用户信息查看界面
 //
 
 import UIKit
@@ -13,6 +13,8 @@ class JCUserInfoViewController: UIViewController {
     var user: JMSGUser!
     var isOnConversation = false
     var isOnAddFriend = false//是否来自于添加好友搜索
+    var isFromGroupList = false//是否进入页面来源是群组成员列表
+    var group: JMSGGroup?//群组信息
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,6 +65,11 @@ class JCUserInfoViewController: UIViewController {
     func _clickNavRightButton() {
         let vc = JCFriendSettingViewController()
         vc.user = self.user
+        //传入群组对象
+        if self.isFromGroupList {
+            vc.isFromGroupList = self.isFromGroupList
+            vc.group = self.group
+        }
         navigationController?.pushViewController(vc, animated: true)
     }
 }

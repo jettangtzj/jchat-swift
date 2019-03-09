@@ -30,6 +30,8 @@ class JCGroupSettingViewController: UIViewController, CustomNavigation {
     fileprivate lazy var users: [JMSGUser] = []
     //是否群主
     fileprivate var isMyGroup = false
+    //是否管理员
+    fileprivate var isAdmin = false
     //是否更新
     fileprivate var isNeedUpdate = false
 
@@ -45,7 +47,10 @@ class JCGroupSettingViewController: UIViewController, CustomNavigation {
         //是否我是群所有者
         if group.owner == user.username  {
             isMyGroup = true
+        } else {//是否我是管理员
+            isAdmin = group.isAdminMember(withUsername: user.username, appKey: nil)
         }
+        
         
         tableView.separatorStyle = .none
         tableView.delegate = self
@@ -124,7 +129,7 @@ extension JCGroupSettingViewController: UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section {
         case 0://群成员列表行
-            if isMyGroup {//如果是我的群
+            if isMyGroup || isAdmin {//如果是我的群
                 if memberCount > 13 {
                     return 314
                 }
@@ -389,7 +394,7 @@ extension JCGroupSettingViewController: JCGroupSettingCellDelegate {
     //点击行添加按钮 添加成员
     func clickAddCell(cell: JCGroupSettingCell) {
         //newchange
-        if isMyGroup {//是群主才能添加群成员
+        if isMyGroup || isAdmin {//是群主或者管理员才能添加群成员
             let vc = JCUpdateMemberViewController()
             vc.group = group
             self.navigationController?.pushViewController(vc, animated: true)
@@ -416,9 +421,14 @@ extension JCGroupSettingViewController: JCGroupSettingCellDelegate {
             navigationController?.pushViewController(JCMyInfoViewController(), animated: true)
             return
         }
-        //其他人
+        //如果是其他其他人
         let vc = JCUserInfoViewController()
         vc.user = user
+        //传入群组对象
+        if isMyGroup || isAdmin {
+            vc.isFromGroupList = true
+            vc.group = group
+        }
         navigationController?.pushViewController(vc, animated: true)
     }
 }

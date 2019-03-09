@@ -2,8 +2,7 @@
 //  JCGroupSettingCell.swift
 //  JChat
 //
-//  Created by deng on 2017/4/27.
-//  Copyright © 2017年 HXHG. All rights reserved.
+//  群组设置-人员列表布局
 //
 
 import UIKit
@@ -37,7 +36,8 @@ public class JCGroupSettingCell: UITableViewCell {
     fileprivate var count = 0
     fileprivate var sectionCount = 0
     fileprivate lazy var users: [JMSGUser] = []
-    fileprivate var isMyGroup = false
+    fileprivate var isMyGroup = false//是否群主
+    fileprivate var isAdmin = false//是否群管理
     fileprivate var currentUserCount = 0
 
     private lazy var flowLayout: UICollectionViewFlowLayout = {
@@ -69,7 +69,7 @@ public class JCGroupSettingCell: UITableViewCell {
 
         addSubview(collectionView)
 
-        let showMore = isMyGroup ? count > 13 : count > 14
+        let showMore = isMyGroup || isAdmin ? count > 13 : count > 14
         if showMore {
             moreButton.addTarget(self, action: #selector(_clickMore), for: .touchUpInside)
             moreButton.setTitleColor(UIColor(netHex: 0x999999), for: .normal)
@@ -86,7 +86,7 @@ public class JCGroupSettingCell: UITableViewCell {
         addConstraint(_JCLayoutConstraintMake(collectionView, .left, .equal, self, .left, 15))
         addConstraint(_JCLayoutConstraintMake(collectionView, .right, .equal, self, .right, -15))
         addConstraint(_JCLayoutConstraintMake(collectionView, .top, .equal, self, .top))
-        if isMyGroup {
+        if isMyGroup || isAdmin {
             if count > 8 {
                 addConstraint(_JCLayoutConstraintMake(collectionView, .height, .equal, nil, .notAnAttribute, 260))
             } else if count > 3 {
@@ -118,11 +118,13 @@ public class JCGroupSettingCell: UITableViewCell {
 //        && group.ownerAppKey == user.appKey!  这里group.ownerAppKey == "" 目测sdk bug
         if group.owner == user.username  {
             isMyGroup = true
+        } else {
+            isAdmin = group.isAdminMember(withUsername: user.username, appKey: nil)
         }
         
         count = users.count
         
-        if isMyGroup {
+        if isMyGroup || isAdmin {
             if count > 13 {
                 currentUserCount = 13
             }
@@ -156,7 +158,7 @@ extension JCGroupSettingCell: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if isMyGroup {
+        if isMyGroup || isAdmin {
             if section == 0 {
                 return count >= 3 ? 5 : count + 2
             }

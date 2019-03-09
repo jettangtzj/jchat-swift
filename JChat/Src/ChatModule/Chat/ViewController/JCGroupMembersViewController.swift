@@ -13,6 +13,11 @@ import RxCocoa
 class JCGroupMembersViewController: UIViewController {
     
     var group: JMSGGroup!
+    
+    //是否群主
+    fileprivate var isMyGroup = false
+    //是否管理员
+    fileprivate var isAdmin = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +44,12 @@ class JCGroupMembersViewController: UIViewController {
         users = group.memberArray()
         filteredUsersArray = users
         count = filteredUsersArray.count
+        
+        if group.owner == JMSGUser.myInfo().username  {
+            isMyGroup = true
+        } else {//是否我是管理员
+            isAdmin = group.isAdminMember(withUsername: JMSGUser.myInfo().username, appKey: nil)
+        }
         
         searchView.backgroundColor = UIColor(netHex: 0xe8edf3)
 //        searchController.searchBar.delegate = self
@@ -126,6 +137,10 @@ extension JCGroupMembersViewController: UICollectionViewDelegate, UICollectionVi
         let user = filteredUsersArray[indexPath.row]
         let vc = JCUserInfoViewController()
         vc.user = user
+        if isMyGroup || isAdmin {
+            vc.isFromGroupList = true
+            vc.group = group
+        }
         navigationController?.pushViewController(vc, animated: true)
         searchController.isActive = false
         filter("")

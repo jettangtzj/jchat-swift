@@ -12,6 +12,8 @@ import JMessage
 class JCFriendSettingViewController: UIViewController {
 
     var user: JMSGUser!
+    var isFromGroupList = false//是否进入页面来源是群组成员列表用户查看
+    var group: JMSGGroup? //群组信息
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,10 +60,17 @@ extension JCFriendSettingViewController: UITableViewDataSource, UITableViewDeleg
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            if user.isFriend {
-                return 3
+            if isFromGroupList {//群组页面来源
+                if user.isFriend {//当前对象是好友
+                    return 5
+                }
+                return 4
+            } else {//非群组页面来源
+                if user.isFriend {//当前对象是好友
+                    return 3
+                }
+                return 2
             }
-            return 2
         }
         return 1
     }
@@ -104,37 +113,106 @@ extension JCFriendSettingViewController: UITableViewDataSource, UITableViewDeleg
             guard let cell = cell as? JCMineInfoCell else {
                 return
             }
-            if user.isFriend {
-                switch indexPath.row {
-                case 0:
-                    cell.title = "备注名"
-                    cell.accessoryType = .disclosureIndicator
-                    cell.detail = user.noteName ?? ""
-                case 1:
-                    cell.title = "发送名片"
-                    cell.accessoryType = .disclosureIndicator
-                case 2:
-                    cell.isSwitchOn = user.isInBlacklist
-                    cell.delegate = self
-                    cell.accessoryType = .none
-                    cell.isShowSwitch = true
-                    cell.title = "加入黑名单"
-                default:
-                    break
+            if isFromGroupList {//群组页面来源
+                if user.isFriend {//是否好友
+                    switch indexPath.row {
+                    case 0:
+                        cell.title = "备注名"
+                        cell.accessoryType = .disclosureIndicator
+                        cell.detail = user.noteName ?? ""
+                    case 1:
+                        cell.title = "发送名片"
+                        cell.accessoryType = .disclosureIndicator
+                    case 2:
+                        cell.isSwitchOn = user.isInBlacklist
+                        cell.delegate = self
+                        cell.accessoryType = .none
+                        cell.isShowSwitch = true
+                        cell.title = "加入黑名单"
+                        cell.switchButtonTag = 1
+                    case 3:
+                        cell.isSwitchOn = (group?.isAdminMember(withUsername: user.username, appKey: ""))!
+                        cell.delegate = self
+                        cell.accessoryType = .none
+                        cell.isShowSwitch = true
+                        cell.title = "设为群管理员"
+                        cell.switchButtonTag = 2
+                    case 4:
+                        cell.isSwitchOn = (group?.isSilenceMember(withUsername: user.username, appKey: ""))!
+                        cell.delegate = self
+                        cell.accessoryType = .none
+                        cell.isShowSwitch = true
+                        cell.title = "设为群内禁言"
+                        cell.switchButtonTag = 3
+                    default:
+                        break
+                    }
+                } else {
+                    switch indexPath.row {
+                    case 0:
+                        cell.title = "发送名片"
+                        cell.accessoryType = .disclosureIndicator
+                    case 1:
+                        cell.isSwitchOn = user.isInBlacklist
+                        cell.delegate = self
+                        cell.accessoryType = .none
+                        cell.isShowSwitch = true
+                        cell.title = "加入黑名单"
+                        cell.switchButtonTag = 1
+                        
+                    case 2:
+                        cell.isSwitchOn = (group?.isAdminMember(withUsername: user.username, appKey: ""))!
+                        cell.delegate = self
+                        cell.accessoryType = .none
+                        cell.isShowSwitch = true
+                        cell.title = "设为群管理员"
+                        cell.switchButtonTag = 2
+                    case 3:
+                        cell.isSwitchOn = (group?.isSilenceMember(withUsername: user.username, appKey: ""))!
+                        cell.delegate = self
+                        cell.accessoryType = .none
+                        cell.isShowSwitch = true
+                        cell.title = "设为群内禁言"
+                        cell.switchButtonTag = 3
+                    default:
+                        break
+                    }
                 }
-            } else {
-                switch indexPath.row {
-                case 0:
-                    cell.title = "发送名片"
-                    cell.accessoryType = .disclosureIndicator
-                case 1:
-                    cell.isSwitchOn = user.isInBlacklist
-                    cell.delegate = self
-                    cell.accessoryType = .none
-                    cell.isShowSwitch = true
-                    cell.title = "加入黑名单"
-                default:
-                    break
+            } else {//非群组页面来源
+                if user.isFriend {//是否好友
+                    switch indexPath.row {
+                    case 0:
+                        cell.title = "备注名"
+                        cell.accessoryType = .disclosureIndicator
+                        cell.detail = user.noteName ?? ""
+                    case 1:
+                        cell.title = "发送名片"
+                        cell.accessoryType = .disclosureIndicator
+                    case 2:
+                        cell.isSwitchOn = user.isInBlacklist
+                        cell.delegate = self
+                        cell.accessoryType = .none
+                        cell.isShowSwitch = true
+                        cell.title = "加入黑名单"
+                        cell.switchButtonTag = 1
+                    default:
+                        break
+                    }
+                } else {
+                    switch indexPath.row {
+                    case 0:
+                        cell.title = "发送名片"
+                        cell.accessoryType = .disclosureIndicator
+                    case 1:
+                        cell.isSwitchOn = user.isInBlacklist
+                        cell.delegate = self
+                        cell.accessoryType = .none
+                        cell.isShowSwitch = true
+                        cell.title = "加入黑名单"
+                        cell.switchButtonTag = 1
+                    default:
+                        break
+                    }
                 }
             }
             
@@ -176,6 +254,7 @@ extension JCFriendSettingViewController: UITableViewDataSource, UITableViewDeleg
     
 }
 
+//删除好友按钮事件
 extension JCFriendSettingViewController: JCButtonCellDelegate {
     func buttonCell(clickButton button: UIButton) {
         let alertView = UIAlertView(title: "删除好友", message: "是否确认删除该好友？", delegate: self, cancelButtonTitle: "取消", otherButtonTitles: "删除")
@@ -183,9 +262,10 @@ extension JCFriendSettingViewController: JCButtonCellDelegate {
     }
 }
 
+//删除好友弹窗提示选择事件
 extension JCFriendSettingViewController: UIAlertViewDelegate {
     func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int) {
-        if buttonIndex == 1 {
+        if buttonIndex == 1 {//选择确认删除
             JMSGFriendManager.removeFriend(withUsername: user.username, appKey: user.appKey, completionHandler: { (result, error) in
                 if error == nil {
                     if JMSGConversation.singleConversation(withUsername: self.user.username) != nil {
@@ -202,31 +282,66 @@ extension JCFriendSettingViewController: UIAlertViewDelegate {
     }
 }
 
+//switch 切换事件
 extension JCFriendSettingViewController: JCMineInfoCellDelegate {
     func mineInfoCell(clickSwitchButton button: UISwitch, indexPath: IndexPath?) {
         MBProgressHUD_JChat.showMessage(message: "修改中", toView: view)
-        if button.isOn {
-            JMSGUser.addUsers(toBlacklist: [user.username]) { (result, error) in
-                MBProgressHUD_JChat.hide(forView: self.view, animated: true)
-                if error == nil {
-                    MBProgressHUD_JChat.show(text: "修改成功", view: self.view)
-                } else {
-                    button.isOn = !button.isOn
-                    MBProgressHUD_JChat.show(text: "\(String.errorAlert(error! as NSError))", view: self.view)
-                }
-            }
-        } else {
-            JMSGUser.delUsers(fromBlacklist: [user.username]) { (result, error) in
-                MBProgressHUD_JChat.hide(forView: self.view, animated: true)
-                if error == nil {
-                    MBProgressHUD_JChat.show(text: "修改成功", view: self.view)
-                } else {
-                    button.isOn = !button.isOn
-                    MBProgressHUD_JChat.show(text: "\(String.errorAlert(error! as NSError))", view: self.view)
-                }
-            }
-        }
         
+        if button.tag == 1 {//黑名单
+            if button.isOn {
+                JMSGUser.addUsers(toBlacklist: [user.username]) { (result, error) in
+                    MBProgressHUD_JChat.hide(forView: self.view, animated: true)
+                    if error == nil {
+                        MBProgressHUD_JChat.show(text: "修改成功", view: self.view)
+                    } else {
+                        button.isOn = !button.isOn
+                        MBProgressHUD_JChat.show(text: "\(String.errorAlert(error! as NSError))", view: self.view)
+                    }
+                }
+            } else {
+                JMSGUser.delUsers(fromBlacklist: [user.username]) { (result, error) in
+                    MBProgressHUD_JChat.hide(forView: self.view, animated: true)
+                    if error == nil {
+                        MBProgressHUD_JChat.show(text: "修改成功", view: self.view)
+                    } else {
+                        button.isOn = !button.isOn
+                        MBProgressHUD_JChat.show(text: "\(String.errorAlert(error! as NSError))", view: self.view)
+                    }
+                }
+            }
+        }else if button.tag == 2 {//设置群管理员
+            if button.isOn {
+                self.group?.addAdmin(withUsername: user.username, appKey: nil, completionHandler: { (result, error) in
+                    MBProgressHUD_JChat.hide(forView: self.view, animated: true)
+                    if error == nil {
+                        MBProgressHUD_JChat.show(text: "修改成功", view: self.view)
+                    } else {
+                        button.isOn = !button.isOn
+                        MBProgressHUD_JChat.show(text: "\(String.errorAlert(error! as NSError))", view: self.view)
+                    }
+                })
+            } else {
+                self.group?.deleteAdmin(withUsername: user.username, appKey: nil, completionHandler: {(result, error) in
+                    MBProgressHUD_JChat.hide(forView: self.view, animated: true)
+                    if error == nil {
+                        MBProgressHUD_JChat.show(text: "修改成功", view: self.view)
+                    } else {
+                        button.isOn = !button.isOn
+                        MBProgressHUD_JChat.show(text: "\(String.errorAlert(error! as NSError))", view: self.view)
+                    }
+                })
+            }
+        }else if button.tag == 3 {//设置群禁言
+            self.group?.setGroupMemberSilence(button.isOn, username: user.username, appKey: nil, handler: { (result, error) in
+                MBProgressHUD_JChat.hide(forView: self.view, animated: true)
+                if error == nil {
+                    MBProgressHUD_JChat.show(text: "修改成功", view: self.view)
+                } else {
+                    button.isOn = !button.isOn
+                    MBProgressHUD_JChat.show(text: "\(String.errorAlert(error! as NSError))", view: self.view)
+                }
+            })
+        }
     }
     
 }
