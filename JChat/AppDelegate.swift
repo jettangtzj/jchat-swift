@@ -5,13 +5,12 @@
 //  Created by deng on 2017/2/16.
 //  Copyright © 2017年 HXHG. All rights reserved.
 //
-
 import UIKit
 import JMessage
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     var window: UIWindow?
     let JMAPPKEY = "51f20827335dfeeed460d842"
     // 百度地图 SDK AppKey，请自行申请你对应的 AppKey
@@ -27,28 +26,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     //MARK: - life cycle
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-
+        
         #if READ_VERSION
-            print("-------------READ_VERSION------------")
-            print("如果不需要支持已读未读功能")
-            print("在 Build Settings 中，找到 Swift Compiler - Custom Flags，并在其中的 Other Swift Flags 删除 -D READ_VERSION")
-            print("-------------------------------------")
+        print("-------------READ_VERSION------------")
+        print("如果不需要支持已读未读功能")
+        print("在 Build Settings 中，找到 Swift Compiler - Custom Flags，并在其中的 Other Swift Flags 删除 -D READ_VERSION")
+        print("-------------------------------------")
         #endif
-
-//        DispatchQueue.main.async {
-//            if let window = self.window {
-//                let label = JCFPSLabel(frame: CGRect(x: window.bounds.width - 55 - 8, y: 10, width: 55, height: 20))
-//                label.autoresizingMask = [.flexibleLeftMargin, .flexibleBottomMargin]
-//                window.addSubview(label)
-//                window.backgroundColor = .white
-//            }
-//        }
+        
+        //        DispatchQueue.main.async {
+        //            if let window = self.window {
+        //                let label = JCFPSLabel(frame: CGRect(x: window.bounds.width - 55 - 8, y: 10, width: 55, height: 20))
+        //                label.autoresizingMask = [.flexibleLeftMargin, .flexibleBottomMargin]
+        //                window.addSubview(label)
+        //                window.backgroundColor = .white
+        //            }
+        //        }
         if #available(iOS 11.0, *) {
             UITableView.appearance().estimatedRowHeight = 0
             UITableView.appearance().estimatedSectionFooterHeight = 0
             UITableView.appearance().estimatedSectionHeaderHeight = 0
         }
-
+        
         JMessage.setupJMessage(launchOptions, appKey: JMAPPKEY, channel: nil, apsForProduction: true, category: nil, messageRoaming: true)
         _setupJMessage()
         
@@ -65,15 +64,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         return true
     }
-
+    
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         JMessage.registerDeviceToken(deviceToken)
     }
-
+    
     func applicationDidEnterBackground(_ application: UIApplication) {
         resetBadge(application)
     }
-
+    
     func applicationWillEnterForeground(_ application: UIApplication) {
         resetBadge(application)
     }
@@ -82,7 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - private func
     private func _setupJMessage() {
         JMessage.add(self, with: nil)
-//        JMessage.setLogOFF()
+        //        JMessage.setLogOFF()
         JMessage.setDebugMode()
         if #available(iOS 8, *) {
             JMessage.register(
@@ -118,42 +117,64 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 //MARK: - JMessage Delegate
 extension AppDelegate: JMessageDelegate {
+    //数据库升级
     func onDBMigrateStart() {
         MBProgressHUD_JChat.showMessage(message: "数据库升级中", toView: nil)
     }
     
+    //数据库升级结束
     func onDBMigrateFinishedWithError(_ error: Error!) {
         MBProgressHUD_JChat.hide(forView: nil, animated: true)
         MBProgressHUD_JChat.show(text: "数据库升级完成", view: nil)
     }
     
-    func onReceive(_ event: JMSGNotificationEvent!) {
-        switch event.eventType {
-        case .receiveFriendInvitation, .acceptedFriendInvitation, .declinedFriendInvitation:
+    //好友相关事件
+    func onReceiveFriendNotificationEvent(event: JMSGFriendNotificationEvent!){
+        switch event.eventType.rawValue {
+        case 51,52,53 :
             cacheInvitation(event: event)
-        case .loginKicked, .serverAlterPassword, .userLoginStatusUnexpected:
-            _logout()
-        case .deletedFriend, .receiveServerFriendUpdate:
+        case 6,7 :
             NotificationCenter.default.post(name: Notification.Name(rawValue: kUpdateFriendList), object: nil)
         default:
             break
         }
+        
     }
+    
+    //用户登陆相关事件
+    func onReceiveUserLoginStatusChangeEvent(event: JMSGUserLoginStatusChangeEvent!) {
+        _logout()
+    }
+    
+    
+    
+//    func onReceive(_ event: JMSGNotificationEvent!) {
+//        switch event.eventType {
+//        case .receiveFriendInvitation, .acceptedFriendInvitation, .declinedFriendInvitation:
+//            cacheInvitation(event: event)
+//        case .loginKicked, .serverAlterPassword, .userLoginStatusUnexpected:
+//            _logout()
+//        case .deletedFriend, .receiveServerFriendUpdate:
+//            NotificationCenter.default.post(name: Notification.Name(rawValue: kUpdateFriendList), object: nil)
+//        default:
+//            break
+//        }
+//    }
     
     private func cacheInvitation(event: JMSGNotificationEvent) {
         let friendEvent =  event as! JMSGFriendNotificationEvent
         let user = friendEvent.getFromUser()
         let reason = friendEvent.getReason()
         let info = JCVerificationInfo.create(username: user!.username, nickname: user?.nickname, appkey: user!.appKey!, resaon: reason, state: JCVerificationType.wait.rawValue)
-        switch event.eventType {
-        case .receiveFriendInvitation:
+        switch event.eventType.rawValue {
+        case 51:
             info.state = JCVerificationType.receive.rawValue
             JCVerificationInfoDB.shareInstance.insertData(info)
-        case .acceptedFriendInvitation:
+        case 52:
             info.state = JCVerificationType.accept.rawValue
             JCVerificationInfoDB.shareInstance.updateData(info)
             NotificationCenter.default.post(name: Notification.Name(rawValue: kUpdateFriendList), object: nil)
-        case .declinedFriendInvitation:
+        case 53:
             info.state = JCVerificationType.reject.rawValue
             JCVerificationInfoDB.shareInstance.updateData(info)
         default:

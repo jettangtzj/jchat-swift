@@ -6,18 +6,17 @@
 //  Copyright © 2017年 HXHG. All rights reserved.
 //  “我”界面
 //
-
 import UIKit
 import JMessage
 
 class JCMineViewController: UIViewController {
-
+    
     //MARK: - life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         _init()
     }
-
+    
     deinit {
         NotificationCenter.default.removeObserver(self)
         JMessage.remove(self, with: nil)
@@ -34,7 +33,7 @@ class JCMineViewController: UIViewController {
         return tableview
     }()
     
-    //MARK: - private func 
+    //MARK: - private func
     private func _init() {
         view.backgroundColor = .white
         view.addSubview(tableview)
@@ -45,7 +44,7 @@ class JCMineViewController: UIViewController {
     func _updateUserInfo() {
         tableview.reloadData()
     }
-
+    
     func updateCurrentUserAvator() {
         JMSGUser.myInfo().thumbAvatarData({ (data, id, error) in
             if let data = data {
@@ -56,15 +55,16 @@ class JCMineViewController: UIViewController {
             }
         })
     }
-
+    
 }
 
 extension JCMineViewController: JMessageDelegate {
-    func onReceive(_ event: JMSGNotificationEvent!) {
-        switch event.eventType {
-//        case .currentUserInfoChange:
-//            updateCurrentUserAvator()
-//            tableview.reloadData()
+    
+    func onReceive(event: JMSGUserLoginStatusChangeEvent!) {
+        switch event.eventType.rawValue {
+        case 40://kJMSGEventNotificationCurrentUserInfoChange
+            updateCurrentUserAvator()
+            tableview.reloadData()
         default:
             break
         }
@@ -173,7 +173,7 @@ extension JCMineViewController: UITableViewDelegate, UITableViewDataSource {
         }
         return 15
     }
-
+    
 }
 
 extension JCMineViewController: UIAlertViewDelegate {
