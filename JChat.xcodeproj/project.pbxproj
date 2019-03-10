@@ -222,9 +222,8 @@
 		B4FD347E1F4293EB00F96FCE /* MorePopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FD347D1F4293EB00F96FCE /* MorePopupView.swift */; };
 		B4FD34801F42B9A100F96FCE /* MyQRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FD347F1F42B9A100F96FCE /* MyQRCodeViewController.swift */; };
 		B4FFA4171F1764C300585B35 /* KILabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FFA4161F1764C200585B35 /* KILabel.m */; };
-		C91EFB2EF11AF29233E41A9E /* Pods_JChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4F564DA941DA039BE9AB21C /* Pods_JChat.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		D7AAC4D421E4827E0016BABC /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D7AAC4D321E4827E0016BABC /* libstdc++.6.0.9.tbd */; };
-		D7B8EA2822338B8600677430 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D7B8EA2722338B8500677430 /* README.md */; };
+		D7347C4322353E6100CDD307 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D79A95742235371F002E327F /* libstdc++.6.0.9.tbd */; };
+		D752ED4722350858007EC164 /* Pods_JChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4F564DA941DA039BE9AB21C /* Pods_JChat.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -279,7 +278,6 @@
 		65E0816F1F7D49460088730D /* UserDefaultValidationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultValidationService.swift; sourceTree = "<group>"; };
 		65EA27871F70F5DE00E489C4 /* GroupAvatorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupAvatorCell.swift; sourceTree = "<group>"; };
 		6F45094B9185E340E098980B /* Pods-JChatTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JChatTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-JChatTests/Pods-JChatTests.release.xcconfig"; sourceTree = "<group>"; };
-		9C5229541B366E492E890423 /* Pods_JChatUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JChatUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B401970E1EF3B34C006B9F2D /* JCNetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCNetworkManager.swift; sourceTree = "<group>"; };
 		B401E5051E8B4A6C003ABE08 /* JCSignatureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCSignatureViewController.swift; sourceTree = "<group>"; };
 		B401E5071E8B7B9D003ABE08 /* JCNicknameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCNicknameViewController.swift; sourceTree = "<group>"; };
@@ -471,8 +469,8 @@
 		B4FFA4151F1764C200585B35 /* KILabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KILabel.h; sourceTree = "<group>"; };
 		B4FFA4161F1764C200585B35 /* KILabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KILabel.m; sourceTree = "<group>"; };
 		C4F564DA941DA039BE9AB21C /* Pods_JChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CBCCA1A62435BE8F41C4D275 /* Pods_JChatTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JChatTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D7AAC4D321E4827E0016BABC /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "Pods/JMessage/libstdc++.6.0.9.tbd"; sourceTree = "<group>"; };
+		D7347C4122353E4500CDD307 /* JMessage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JMessage.framework; path = Pods/JMessage/JMessage.framework; sourceTree = "<group>"; };
+		D79A95742235371F002E327F /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "Pods/JCore/libstdc++.6.0.9.tbd"; sourceTree = "<group>"; };
 		D7B8EA2722338B8500677430 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		ED2FC29D8702D883AAF3E23C /* Pods-JChatUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JChatUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-JChatUITests/Pods-JChatUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -493,11 +491,11 @@
 				B43BA4371E8A309C00565DB3 /* CFNetwork.framework in Frameworks */,
 				B43BA4331E8A308900565DB3 /* AudioToolbox.framework in Frameworks */,
 				B43BA4311E8A307B00565DB3 /* MobileCoreServices.framework in Frameworks */,
+				D752ED4722350858007EC164 /* Pods_JChat.framework in Frameworks */,
 				B43BA42F1E8A307100565DB3 /* libz.tbd in Frameworks */,
+				D7347C4322353E6100CDD307 /* libstdc++.6.0.9.tbd in Frameworks */,
 				B43BA42D1E8A306700565DB3 /* libresolv.tbd in Frameworks */,
 				B43BA42B1E8A305500565DB3 /* libsqlite3.tbd in Frameworks */,
-				C91EFB2EF11AF29233E41A9E /* Pods_JChat.framework in Frameworks */,
-				D7AAC4D421E4827E0016BABC /* libstdc++.6.0.9.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1167,7 +1165,8 @@
 		DDA5C80485C5FFA2C3776F21 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D7AAC4D321E4827E0016BABC /* libstdc++.6.0.9.tbd */,
+				D7347C4122353E4500CDD307 /* JMessage.framework */,
+				D79A95742235371F002E327F /* libstdc++.6.0.9.tbd */,
 				B43F70341EA87FA10076D5AF /* OpenGLES.framework */,
 				B43F70321EA87F910076D5AF /* QuartzCore.framework */,
 				B43F70301EA87F7C0076D5AF /* CoreLocation.framework */,
@@ -1183,8 +1182,6 @@
 				B43BA42C1E8A306700565DB3 /* libresolv.tbd */,
 				B43BA42A1E8A305500565DB3 /* libsqlite3.tbd */,
 				C4F564DA941DA039BE9AB21C /* Pods_JChat.framework */,
-				CBCCA1A62435BE8F41C4D275 /* Pods_JChatTests.framework */,
-				9C5229541B366E492E890423 /* Pods_JChatUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1269,7 +1266,6 @@
 				B43F704C1EA883DA0076D5AF /* 定位1.png in Resources */,
 				B43BA37F1E8A2F0000565DB3 /* Assets.xcassets in Resources */,
 				B403F4331EBAF24F00011630 /* addressCode in Resources */,
-				D7B8EA2822338B8600677430 /* README.md in Resources */,
 				B4DB28C01E9F7B6C0024AB65 /* yh_image_picked@2x.png in Resources */,
 				B4DB28C11E9F7B6C0024AB65 /* yh_image_picked@3x.png in Resources */,
 				B43BA3F41E8A2FF500565DB3 /* emoticons.bundle in Resources */,
@@ -1662,18 +1658,20 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(SRCROOT)/**",
+					"$(PROJECT_DIR)/Pods/JMessage",
 				);
 				INFOPLIST_FILE = JChat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/JMessage.framework",
-					"$(PROJECT_DIR)/Pods/JMessage",
+					"$(PROJECT_DIR)/Pods/JMessage/**",
+					"$(PROJECT_DIR)/Pods/JCore",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
-					"$(inherited)",
 					"-ObjC",
+					"$(inherited)",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -D READ_VERSION";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jixin.enterprise.chat.ios;
@@ -1698,19 +1696,20 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Pods/JMessage",
 				);
 				INFOPLIST_FILE = JChat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/JMessage.framework",
-					"$(PROJECT_DIR)/Pods/JMessage",
+					"$(PROJECT_DIR)/Pods/JMessage/**",
+					"$(PROJECT_DIR)/Pods/JCore",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
-					"$(inherited)",
 					"-ObjC",
+					"$(inherited)",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -D READ_VERSION";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jixin.enterprise.chat.ios;
