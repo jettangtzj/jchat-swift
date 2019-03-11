@@ -966,8 +966,9 @@ extension JCChatViewController: JCChatViewDelegate {
         guard let message = conversation.message(withMessageId: message.msgId) else {
             return
         }
+        //可以撤回3分钟内的消息
         JMSGMessage.retractMessage(message, completionHandler: { (result, error) in
-            if error == nil {
+            if error == nil {//撤回成功，更新消息
                 if let index = self.messages.index(message) {
                     let msg = self._parseMessage(self.conversation.message(withMessageId: message.msgId)!, false)
                     self.messages[index] = msg
