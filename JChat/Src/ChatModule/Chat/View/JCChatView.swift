@@ -2,8 +2,7 @@
 //  JCChatView.swift
 //  JChat
 //
-//  Created by deng on 2017/2/28.
-//  Copyright © 2017年 HXHG. All rights reserved.
+//  聊天内容布局
 //
 
 import UIKit
@@ -414,24 +413,28 @@ extension JCChatView: UICollectionViewDataSource, JCChatViewLayoutDelegate {
         return true
     }
     
+    //消息布局弹出的浮动操作框
     open func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
         let message = _chatViewData[indexPath.item]
         if message.content is JCMessageNoticeContent || message.content is JCMessageTimeLineContent  {
             return false
         }
+        //文本消息
         if let _ = message.content as? JCMessageTextContent {
+            //复制
             if action == #selector(copyMessage(_:)) {
                 return true
             }
         }
+        //删除
         if action == #selector(deleteMessage(_:)) {
             return true
         }
-        
+        //转发
         if action == #selector(forwardMessage(_:)) {
             return true
         }
-        
+        //撤回
         if action == #selector(withdrawMessage(_:)) {
             if let sender = message.sender {
                 if sender.isEqual(to: JMSGUser.myInfo()) {

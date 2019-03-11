@@ -233,6 +233,7 @@ open class JCChatViewCell: UICollectionViewCell, UIGestureRecognizerDelegate {
     func forwardMessage(_ sender: Any) {}
     func withdrawMessage(_ sender: Any) {}
 
+    //处理长按手势识别事件
     private dynamic func _handleMenuGesture(_ sender: UILongPressGestureRecognizer) {
         guard sender.state == .began else {
             return
@@ -315,15 +316,19 @@ open class JCChatViewCell: UICollectionViewCell, UIGestureRecognizerDelegate {
     
     private func _commonInit() {
     }
-    
+    //消息气泡 发送失败显示
     fileprivate var _bubbleView: UIImageView?
-    
+    //消息卡片组件
     fileprivate var _cardView: JCMessageContentViewType?
+    //消息用户头像
     fileprivate var _avatarView: JCMessageContentViewType?
+    //消息内容
     fileprivate var _contentView: JCMessageContentViewType?
+    //提示组件 几人未读
     fileprivate var _tipsView: JCMessageContentViewType?
     
     fileprivate var _menuNotifyObserver: Any?
+    //手势识别 长按识别
     fileprivate var _menuGesture: UILongPressGestureRecognizer? {
         return value(forKeyPath: "_menuGesture") as? UILongPressGestureRecognizer
     }
