@@ -979,7 +979,7 @@ extension JCChatViewController: JCChatViewDelegate {
         })
     }
 
-    //
+    //更新消息未读数
     func indexPathsForVisibleItems(chatView: JCChatView, items: [IndexPath]) {
         for item in items {
             if item.row <= minIndex {
