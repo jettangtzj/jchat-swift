@@ -118,9 +118,7 @@ public class JCGroupSettingCell: UITableViewCell {
 //        && group.ownerAppKey == user.appKey!  这里group.ownerAppKey == "" 目测sdk bug
         if group.owner == user.username  {
             isMyGroup = true
-        } else {
-            isAdmin = group.isAdminMember(withUsername: user.username, appKey: nil)
-        }
+        } 
         
         count = users.count
         

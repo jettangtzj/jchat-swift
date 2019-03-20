@@ -47,9 +47,7 @@ class JCGroupMembersViewController: UIViewController {
         
         if group.owner == JMSGUser.myInfo().username  {
             isMyGroup = true
-        } else {//是否我是管理员
-            isAdmin = group.isAdminMember(withUsername: JMSGUser.myInfo().username, appKey: nil)
-        }
+        } 
         
         searchView.backgroundColor = UIColor(netHex: 0xe8edf3)
 //        searchController.searchBar.delegate = self

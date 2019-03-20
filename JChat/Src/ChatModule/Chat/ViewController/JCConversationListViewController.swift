@@ -33,7 +33,7 @@ class JCConversationListViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         titleTipsView.isHidden = true
     }
-
+    
     deinit {
         //销毁时移除
         NotificationCenter.default.removeObserver(self)
@@ -122,14 +122,14 @@ class JCConversationListViewController: UIViewController {
         tableview.tableHeaderView = searchView
         view.addSubview(tableview)
         view.addSubview(emptyView)
-        
+        //事件代理
         NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(note:)), name: NSNotification.Name(rawValue: "kNetworkReachabilityChangedNotification"), object: nil)
-
-        _getConversations()
         NotificationCenter.default.addObserver(self, selector: #selector(_getConversations), name: NSNotification.Name(rawValue: kUpdateConversation), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(connectClose), name: NSNotification.Name.jmsgNetworkDidClose, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(connectSucceed), name: NSNotification.Name.jmsgNetworkDidLogin, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(connecting), name: NSNotification.Name.jmsgNetworkIsConnecting, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(connectClose), name: NSNotification.Name.jmsgNetworkDidClose, object: nil)//关闭连接
+        NotificationCenter.default.addObserver(self, selector: #selector(connectSucceed), name: NSNotification.Name.jmsgNetworkDidLogin, object: nil)//连接成功
+        NotificationCenter.default.addObserver(self, selector: #selector(connecting), name: NSNotification.Name.jmsgNetworkIsConnecting, object: nil)//正在连接中
+        //获取会话信息
+        _getConversations()
     }
     
     //网络状态变化事件
@@ -171,7 +171,9 @@ class JCConversationListViewController: UIViewController {
             }
             self.datas = conversatios as! [JMSGConversation]
             self.datas = self.sortConverstaions(self.datas)
-            self.tableview.reloadData()
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+                self.tableview.reloadData()
+            }
             if self.datas.count == 0 {//没有数据则空区域显示
                 self.emptyView.isHidden = false
             } else {
@@ -180,6 +182,8 @@ class JCConversationListViewController: UIViewController {
             self._updateBadge()
         }
     }
+    
+    
 
     //会话信息排序
     fileprivate func sortConverstaions(_ convs: [JMSGConversation]) -> [JMSGConversation] {
@@ -314,7 +318,9 @@ extension JCConversationListViewController: UITableViewDelegate, UITableViewData
         } else {
             emptyView.isHidden = true
         }
-        tableview.reloadData()
+        DispatchQueue.main.async {
+            self.tableview.reloadData()
+        }
     }
     
 }
@@ -353,7 +359,7 @@ extension JCConversationListViewController: MorePopupViewDelegate {
 //消息代理
 extension JCConversationListViewController: JMessageDelegate {
     
-    //收到错误消息
+    //收到消息
     func onReceive(_ message: JMSGMessage!, error: Error!) {
         _getConversations()
     }
@@ -368,7 +374,7 @@ extension JCConversationListViewController: JMessageDelegate {
         _getConversations()
     }
     
-    //同步在线消息
+    //同步漫游消息
     func onSyncRoamingMessageConversation(_ conversation: JMSGConversation!) {
         _getConversations()
     }
@@ -378,7 +384,7 @@ extension JCConversationListViewController: JMessageDelegate {
         _getConversations()
     }
     
-    //收到消息
+    //消息撤回事件
     func onReceive(_ retractEvent: JMSGMessageRetractEvent!) {
         _getConversations()
     }
@@ -424,7 +430,7 @@ extension JCConversationListViewController {
             return
         }
         showNetworkTips = false
-        tableview.reloadData()
+        _getConversations()
     }
     
     func notReachable() {
@@ -438,7 +444,9 @@ extension JCConversationListViewController {
             tableview.insertRows(at: [indexPath], with: .automatic)
             tableview.endUpdates()
         } else {
-            tableview.reloadData()
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+                self.tableview.reloadData()
+            }
         }
     }
     

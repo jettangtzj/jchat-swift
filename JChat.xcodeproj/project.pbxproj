@@ -224,6 +224,7 @@
 		B4FFA4171F1764C300585B35 /* KILabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FFA4161F1764C200585B35 /* KILabel.m */; };
 		D7347C4322353E6100CDD307 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D79A95742235371F002E327F /* libstdc++.6.0.9.tbd */; };
 		D752ED4722350858007EC164 /* Pods_JChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4F564DA941DA039BE9AB21C /* Pods_JChat.framework */; };
+		D77D93EE22429C1400A9B394 /* song.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D77D93ED22429C1400A9B394 /* song.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -470,6 +471,7 @@
 		B4FFA4161F1764C200585B35 /* KILabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KILabel.m; sourceTree = "<group>"; };
 		C4F564DA941DA039BE9AB21C /* Pods_JChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7347C4122353E4500CDD307 /* JMessage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JMessage.framework; path = Pods/JMessage/JMessage.framework; sourceTree = "<group>"; };
+		D77D93ED22429C1400A9B394 /* song.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = song.mp3; sourceTree = "<group>"; };
 		D79A95742235371F002E327F /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "Pods/JCore/libstdc++.6.0.9.tbd"; sourceTree = "<group>"; };
 		D7B8EA2722338B8500677430 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		ED2FC29D8702D883AAF3E23C /* Pods-JChatUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JChatUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-JChatUITests/Pods-JChatUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -693,6 +695,7 @@
 		B43BA3A51E8A2FF500565DB3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D77D93ED22429C1400A9B394 /* song.mp3 */,
 				B4DB28BA1E9F7B6C0024AB65 /* yh_image_no_picked@2x.png */,
 				B4DB28BB1E9F7B6C0024AB65 /* yh_image_no_picked@3x.png */,
 				B4DB28BC1E9F7B6C0024AB65 /* yh_image_picked@2x.png */,
@@ -1225,6 +1228,9 @@
 						DevelopmentTeam = 88U3B9SHQ4;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -1266,6 +1272,7 @@
 				B43F704C1EA883DA0076D5AF /* 定位1.png in Resources */,
 				B43BA37F1E8A2F0000565DB3 /* Assets.xcassets in Resources */,
 				B403F4331EBAF24F00011630 /* addressCode in Resources */,
+				D77D93EE22429C1400A9B394 /* song.mp3 in Resources */,
 				B4DB28C01E9F7B6C0024AB65 /* yh_image_picked@2x.png in Resources */,
 				B4DB28C11E9F7B6C0024AB65 /* yh_image_picked@3x.png in Resources */,
 				B43BA3F41E8A2FF500565DB3 /* emoticons.bundle in Resources */,
@@ -1673,7 +1680,7 @@
 					"-ObjC",
 					"$(inherited)",
 				);
-				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -D READ_VERSION";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jixin.enterprise.chat.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/JChat/JChat-Bridging-Header.h";
@@ -1711,7 +1718,7 @@
 					"-ObjC",
 					"$(inherited)",
 				);
-				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -D READ_VERSION";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jixin.enterprise.chat.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/JChat/JChat-Bridging-Header.h";

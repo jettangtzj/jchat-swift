@@ -47,9 +47,7 @@ class JCGroupSettingViewController: UIViewController, CustomNavigation {
         //是否我是群所有者
         if group.owner == user.username  {
             isMyGroup = true
-        } else {//是否我是管理员
-            isAdmin = group.isAdminMember(withUsername: user.username, appKey: nil)
-        }
+        } 
         
         
         tableView.separatorStyle = .none

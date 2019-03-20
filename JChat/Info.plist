@@ -17,9 +17,9 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.1</string>
+	<string>1.0.2</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>2</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -37,6 +37,14 @@
 	<string>应用需要使用照片保存功能</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>应用需要使用照片</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>audio</string>
+		<string>external-accessory</string>
+		<string>fetch</string>
+		<string>newsstand-content</string>
+		<string>remote-notification</string>
+	</array>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

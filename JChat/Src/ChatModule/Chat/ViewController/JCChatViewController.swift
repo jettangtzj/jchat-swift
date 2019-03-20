@@ -538,7 +538,7 @@ extension JCChatViewController: JMessageDelegate {
         }
     }
     
-    
+    //收到消息
     func onReceive(_ message: JMSGMessage!, error: Error!) {
         if error != nil {
             return
@@ -586,6 +586,7 @@ extension JCChatViewController: JMessageDelegate {
         }
     }
     
+    //消息撤回事件
     func onReceive(_ retractEvent: JMSGMessageRetractEvent!) {
         if let index = messages.index(retractEvent.retractMessage) {
             let msg = _parseMessage(retractEvent.retractMessage, false)
@@ -594,6 +595,8 @@ extension JCChatViewController: JMessageDelegate {
         }
     }
     
+    
+    //离线消息
     func onSyncOfflineMessageConversation(_ conversation: JMSGConversation!, offlineMessages: [JMSGMessage]!) {
         let msgs = offlineMessages.sorted(by: { (m1, m2) -> Bool in
             return m1.timestamp.intValue < m2.timestamp.intValue
@@ -611,6 +614,7 @@ extension JCChatViewController: JMessageDelegate {
         _updateBadge()
     }
     
+    //消息回执状态变更事件
     func onReceive(_ receiptEvent: JMSGMessageReceiptStatusChangeEvent!) {
         for message in receiptEvent.messages! {
             if let index = messages.index(message) {

@@ -7,6 +7,7 @@
 //
 import UIKit
 import JMessage
+import AVFoundation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,6 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var _mapManager: BMKMapManager?
     
     fileprivate var hostReachability: Reachability!
+    
+    var player:AVAudioPlayer = AVAudioPlayer()
     
     deinit {
         hostReachability.stopNotifier()
@@ -62,6 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.backgroundColor = .white
         _setupRootViewController()
         window?.makeKeyAndVisible()
+        musicplay()
         return true
     }
     
@@ -69,13 +73,110 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         JMessage.registerDeviceToken(deviceToken)
     }
     
-    func applicationDidEnterBackground(_ application: UIApplication) {
-        resetBadge(application)
+    func application(_ application: UIApplication,
+                     didReceiveRemoteNotification userInfo: [AnyHashable : Any],
+                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void){
+        let status = application.applicationState
+        switch status {
+        case .active:
+            NSLog("在前台收到推送")
+            break
+        case .inactive:
+            NSLog("后台->前台")
+            break
+        case .background:
+            NSLog("后台")
+            JMSGConversation.allConversations { (result, error) in
+                
+            }
+            break
+        }
+        completionHandler(.newData)
     }
     
-    func applicationWillEnterForeground(_ application: UIApplication) {
+    var backgroundTask:UIBackgroundTaskIdentifier! = nil
+    var timer:Timer! = nil
+    
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        NSLog("进入后台")
         resetBadge(application)
+        //如果已存在后台任务，先将其设为完成
+        if self.backgroundTask != nil {
+            application.endBackgroundTask(self.backgroundTask)
+            self.backgroundTask = UIBackgroundTaskInvalid
+        }
+        self.backgroundTask = application.beginBackgroundTask(expirationHandler: {
+            () -> Void in
+            //如果没有调用endBackgroundTask，时间耗尽时应用程序将被终止
+            application.endBackgroundTask(self.backgroundTask)
+            self.backgroundTask = UIBackgroundTaskInvalid
+        })
+        //创建定时任务
+        timer = Timer.scheduledTimer(timeInterval: 10,target:self,selector:#selector(taskWork),
+                                         userInfo:nil,repeats:true)
+        timer.fire()
     }
+    
+    var missionNO = 0
+    func taskWork(){
+        missionNO += 1
+        NSLog("========启动定时任务\(missionNO)")
+//        JMSGConversation.allConversations { (result, error) in
+//
+//        }
+    }
+    
+    //音乐播放-消声
+    func musicplay(){
+        do
+        {
+            let audioPath = Bundle.main.path(forResource: "song", ofType: "mp3")
+            try player = AVAudioPlayer(contentsOf: NSURL(fileURLWithPath: audioPath!) as URL)
+        }
+        catch
+        {
+            NSLog("play error")
+        }
+        
+        let session = AVAudioSession.sharedInstance()
+        
+        do
+        {
+            try session.setCategory(AVAudioSessionCategoryPlayback)
+        }
+        catch
+        {
+            NSLog("play error")
+        }
+        //无限循环
+        player.numberOfLoops = -1
+        //音量
+        player.volume = 0.0
+        player.play()
+    }
+    
+    
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        NSLog("即将进入前台")
+        resetBadge(application)
+        if timer != nil {
+            missionNO = 0
+            timer.invalidate()
+        }
+        if !player.isPlaying {
+            player.play()
+        }
+    }
+    
+    func applicationWillResignActive(_ application: UIApplication) {
+        NSLog("取消激活")
+    }
+    
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        NSLog("程序被激活")
+    }
+    
+    
     
     
     // MARK: - private func
@@ -128,53 +229,35 @@ extension AppDelegate: JMessageDelegate {
         MBProgressHUD_JChat.show(text: "数据库升级完成", view: nil)
     }
     
-    //好友相关事件
-    func onReceiveFriendNotificationEvent(event: JMSGFriendNotificationEvent!){
-        switch event.eventType.rawValue {
-        case 51,52,53 :
+    
+    
+    func onReceive(_ event: JMSGNotificationEvent!) {
+        switch event.eventType {
+        case .receiveFriendInvitation, .acceptedFriendInvitation, .declinedFriendInvitation:
             cacheInvitation(event: event)
-        case 6,7 :
+        case .loginKicked, .serverAlterPassword, .userLoginStatusUnexpected:
+            _logout()
+        case .deletedFriend, .receiveServerFriendUpdate:
             NotificationCenter.default.post(name: Notification.Name(rawValue: kUpdateFriendList), object: nil)
         default:
             break
         }
-        
     }
-    
-    //用户登陆相关事件
-    func onReceiveUserLoginStatusChangeEvent(event: JMSGUserLoginStatusChangeEvent!) {
-        _logout()
-    }
-    
-    
-    
-//    func onReceive(_ event: JMSGNotificationEvent!) {
-//        switch event.eventType {
-//        case .receiveFriendInvitation, .acceptedFriendInvitation, .declinedFriendInvitation:
-//            cacheInvitation(event: event)
-//        case .loginKicked, .serverAlterPassword, .userLoginStatusUnexpected:
-//            _logout()
-//        case .deletedFriend, .receiveServerFriendUpdate:
-//            NotificationCenter.default.post(name: Notification.Name(rawValue: kUpdateFriendList), object: nil)
-//        default:
-//            break
-//        }
-//    }
     
     private func cacheInvitation(event: JMSGNotificationEvent) {
         let friendEvent =  event as! JMSGFriendNotificationEvent
         let user = friendEvent.getFromUser()
         let reason = friendEvent.getReason()
         let info = JCVerificationInfo.create(username: user!.username, nickname: user?.nickname, appkey: user!.appKey!, resaon: reason, state: JCVerificationType.wait.rawValue)
-        switch event.eventType.rawValue {
-        case 51:
+        switch event.eventType {
+        case .receiveFriendInvitation:
             info.state = JCVerificationType.receive.rawValue
             JCVerificationInfoDB.shareInstance.insertData(info)
-        case 52:
+        case .acceptedFriendInvitation:
             info.state = JCVerificationType.accept.rawValue
             JCVerificationInfoDB.shareInstance.updateData(info)
             NotificationCenter.default.post(name: Notification.Name(rawValue: kUpdateFriendList), object: nil)
-        case 53:
+        case .declinedFriendInvitation:
             info.state = JCVerificationType.reject.rawValue
             JCVerificationInfoDB.shareInstance.updateData(info)
         default:

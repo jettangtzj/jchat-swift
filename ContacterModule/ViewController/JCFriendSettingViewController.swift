@@ -131,19 +131,21 @@ extension JCFriendSettingViewController: UITableViewDataSource, UITableViewDeleg
                         cell.title = "加入黑名单"
                         cell.switchButtonTag = 1
                     case 3:
-                        cell.isSwitchOn = (group?.isAdminMember(withUsername: user.username, appKey: ""))!
-                        cell.delegate = self
-                        cell.accessoryType = .none
-                        cell.isShowSwitch = true
-                        cell.title = "设为群管理员"
-                        cell.switchButtonTag = 2
+//                        cell.isSwitchOn = (group?.isAdminMember(withUsername: user.username, appKey: ""))!
+//                        cell.delegate = self
+//                        cell.accessoryType = .none
+//                        cell.isShowSwitch = true
+//                        cell.title = "设为群管理员"
+//                        cell.switchButtonTag = 2
+                        break
                     case 4:
-                        cell.isSwitchOn = (group?.isSilenceMember(withUsername: user.username, appKey: ""))!
-                        cell.delegate = self
-                        cell.accessoryType = .none
-                        cell.isShowSwitch = true
-                        cell.title = "设为群内禁言"
-                        cell.switchButtonTag = 3
+//                        cell.isSwitchOn = (group?.isSilenceMember(withUsername: user.username, appKey: ""))!
+//                        cell.delegate = self
+//                        cell.accessoryType = .none
+//                        cell.isShowSwitch = true
+//                        cell.title = "设为群内禁言"
+//                        cell.switchButtonTag = 3
+                        break
                     default:
                         break
                     }
@@ -161,19 +163,21 @@ extension JCFriendSettingViewController: UITableViewDataSource, UITableViewDeleg
                         cell.switchButtonTag = 1
                         
                     case 2:
-                        cell.isSwitchOn = (group?.isAdminMember(withUsername: user.username, appKey: ""))!
-                        cell.delegate = self
-                        cell.accessoryType = .none
-                        cell.isShowSwitch = true
-                        cell.title = "设为群管理员"
-                        cell.switchButtonTag = 2
+//                        cell.isSwitchOn = (group?.isAdminMember(withUsername: user.username, appKey: ""))!
+//                        cell.delegate = self
+//                        cell.accessoryType = .none
+//                        cell.isShowSwitch = true
+//                        cell.title = "设为群管理员"
+//                        cell.switchButtonTag = 2
+                        break
                     case 3:
-                        cell.isSwitchOn = (group?.isSilenceMember(withUsername: user.username, appKey: ""))!
-                        cell.delegate = self
-                        cell.accessoryType = .none
-                        cell.isShowSwitch = true
-                        cell.title = "设为群内禁言"
-                        cell.switchButtonTag = 3
+//                        cell.isSwitchOn = (group?.isSilenceMember(withUsername: user.username, appKey: ""))!
+//                        cell.delegate = self
+//                        cell.accessoryType = .none
+//                        cell.isShowSwitch = true
+//                        cell.title = "设为群内禁言"
+//                        cell.switchButtonTag = 3
+                        break
                     default:
                         break
                     }
@@ -311,36 +315,36 @@ extension JCFriendSettingViewController: JCMineInfoCellDelegate {
             }
         }else if button.tag == 2 {//设置群管理员
             if button.isOn {
-                self.group?.addAdmin(withUsername: user.username, appKey: nil, completionHandler: { (result, error) in
-                    MBProgressHUD_JChat.hide(forView: self.view, animated: true)
-                    if error == nil {
-                        MBProgressHUD_JChat.show(text: "修改成功", view: self.view)
-                    } else {
-                        button.isOn = !button.isOn
-                        MBProgressHUD_JChat.show(text: "\(String.errorAlert(error! as NSError))", view: self.view)
-                    }
-                })
+//                self.group?.addAdmin(withUsername: user.username, appKey: nil, completionHandler: { (result, error) in
+//                    MBProgressHUD_JChat.hide(forView: self.view, animated: true)
+//                    if error == nil {
+//                        MBProgressHUD_JChat.show(text: "修改成功", view: self.view)
+//                    } else {
+//                        button.isOn = !button.isOn
+//                        MBProgressHUD_JChat.show(text: "\(String.errorAlert(error! as NSError))", view: self.view)
+//                    }
+//                })
             } else {
-                self.group?.deleteAdmin(withUsername: user.username, appKey: nil, completionHandler: {(result, error) in
-                    MBProgressHUD_JChat.hide(forView: self.view, animated: true)
-                    if error == nil {
-                        MBProgressHUD_JChat.show(text: "修改成功", view: self.view)
-                    } else {
-                        button.isOn = !button.isOn
-                        MBProgressHUD_JChat.show(text: "\(String.errorAlert(error! as NSError))", view: self.view)
-                    }
-                })
+//                self.group?.deleteAdmin(withUsername: user.username, appKey: nil, completionHandler: {(result, error) in
+//                    MBProgressHUD_JChat.hide(forView: self.view, animated: true)
+//                    if error == nil {
+//                        MBProgressHUD_JChat.show(text: "修改成功", view: self.view)
+//                    } else {
+//                        button.isOn = !button.isOn
+//                        MBProgressHUD_JChat.show(text: "\(String.errorAlert(error! as NSError))", view: self.view)
+//                    }
+//                })
             }
         }else if button.tag == 3 {//设置群禁言
-            self.group?.setGroupMemberSilence(button.isOn, username: user.username, appKey: nil, handler: { (result, error) in
-                MBProgressHUD_JChat.hide(forView: self.view, animated: true)
-                if error == nil {
-                    MBProgressHUD_JChat.show(text: "修改成功", view: self.view)
-                } else {
-                    button.isOn = !button.isOn
-                    MBProgressHUD_JChat.show(text: "\(String.errorAlert(error! as NSError))", view: self.view)
-                }
-            })
+//            self.group?.setGroupMemberSilence(button.isOn, username: user.username, appKey: nil, handler: { (result, error) in
+//                MBProgressHUD_JChat.hide(forView: self.view, animated: true)
+//                if error == nil {
+//                    MBProgressHUD_JChat.show(text: "修改成功", view: self.view)
+//                } else {
+//                    button.isOn = !button.isOn
+//                    MBProgressHUD_JChat.show(text: "\(String.errorAlert(error! as NSError))", view: self.view)
+//                }
+//            })
         }
     }
     
